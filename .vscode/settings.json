@@ -1,0 +1,6 @@
+{
+    "window.zoomLevel": 3,
+    "formatOnSave": true,
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.formatOnSaveMode": "modifications",
+}
