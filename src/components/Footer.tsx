@@ -21,7 +21,8 @@ const Footer = () => {
                                             <div className="footer-logo">
                                                 <Link href="/"><Image src={IMAGES.logoFooter} alt='' className="img-fluid" /></Link>
                                             </div>
-                                            <div className='my-1 p p-1'>900 Lucerne Station Road Terrace, Orlando, FL 32806, USA contact@eduaid.com</div>
+                                            <div className='my-1 p p-1'>900 Lucerne Station Road Terrace, Orlando, FL 32806, USA </div>
+                                            <div className='my-1 p p-1'>contact@eduaid.com</div>
                                             <div className='my-1 p p-1'>+892 5555 444</div>
                                         </div>
                                     </div>

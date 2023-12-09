@@ -1,6 +1,9 @@
 {
     "window.zoomLevel": 3,
-    "formatOnSave": true,
-    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSaveMode": "modifications",
+    "[jsx-tags]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "editor.formatOnSave": true
 }
