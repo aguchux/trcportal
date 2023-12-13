@@ -10,10 +10,10 @@ export const generateJwt = (payload: JwtPayload): string => {
     return jwt.sign(payload, jwt_secret, jwtOptions);
 }
 
-export const verifyJwt = (token: string): Jwt => {
-    return jwt.verify(token, jwt_secret) as Jwt;
+export const verifyJwt = async (token: string): Promise<IAdmin> => {
+    return jwt.verify(token, jwt_secret) as IAdmin;
 }
 
-export const decodeJwt = (token: string): Jwt => {
-    return jwt.decode(token) as Jwt;
+export const decodeJwt = async (token: string): Promise<IAdmin> => {
+    return jwt.decode(token) as IAdmin;
 }

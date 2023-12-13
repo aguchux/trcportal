@@ -1,11 +1,10 @@
-"use client"
-
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useAuth } from '@/hooks';
 
 const BaseFooter = () => {
-
-    return (
+    const {loggedIn, busy} = useAuth();
+   return (
         <>
             <div className="footer-bottom-wrapper border-top py-3">
                 <div className="container">
@@ -20,7 +19,7 @@ const BaseFooter = () => {
                                         <li><Link href="#"><i className="fab fa-facebook-f" /></Link></li>
                                         <li><Link href="#"><i className="fab fa-twitter" /></Link></li>
                                         <li><Link href="#"><i className="fab fa-linkedin-in" /></Link></li>
-                                        <li><Link href="/admin"><i className="fa fa-lock text-success" /></Link></li>
+                                        {loggedIn==true ?<li><Link href="/admin"><i className="fa fa-lock text-success" /></Link></li>:<li><Link href="/auth"><i className="fa fa-lock text-danger" /></Link></li> }
                                     </ul>
                                 </div>
                             </div>

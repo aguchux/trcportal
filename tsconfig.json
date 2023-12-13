@@ -22,14 +22,15 @@
       "@/*": ["./src/*"],
       "@app/*": ["./src/app/*"],
       "@public/*": ["./public/*"],
-      "@styles/*": ["./src/app/styles/*"],
+      "@styles/*": ["./src/styles/*"],
       "@assets/*": ["./public/assets/*"],
       "@config/*": ["./src/config/*"],
       "@contexts/*": ["./src/contexts/*"],
       "@components/*": ["./src/components/*"],
+      "@middlewares/*": ["./src/middlewares/*"],
       "@node_modules/*": ["./node_modules/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/contexts/WebsiteContext.tss"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/contexts/WebsiteContext.tss", "types/**/*.d.ts"],
   "exclude": ["node_modules"]
 }

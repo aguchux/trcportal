@@ -1,0 +1,10 @@
+/* @tailwind base; */
+@tailwind components;
+@tailwind utilities;
+
+.nav-item .nav-link.active{
+    color: #fff;
+    background-color: #ff5202;
+    border-color: #ff5202;
+}
+

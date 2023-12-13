@@ -1,22 +1,16 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 export interface AdminAttrs {
+    _id?: Schema.Types.ObjectId,
     name: string;
     email: string;
     password: string;
+    lastSeen: Date;
+    createdAt?: string;
+    updatedAt?: string;
 }
 
-interface AdminDoc extends Document {
-    name: string;
-    email: string;
-    password?: string;
-}
-
-interface AdminModel extends mongoose.Model<AdminDoc> {
-    build(attrs: AdminAttrs): AdminDoc;
-}
-
-const adminSchema = new Schema({
+const adminSchema = new Schema<AdminAttrs>({
     name: {
         type: String,
         required: true,
@@ -36,21 +30,9 @@ const adminSchema = new Schema({
         default: Date.now()
     }
 }, {
-    timestamps: true,
-    toJSON: {
-        transform: function (doc, ret) {
-            ret.id = ret._id;
-            delete ret._id;
-            delete ret.password;
-            delete ret.__v;
-        }
-    }
+    timestamps: true
 });
 
-adminSchema.statics.build = (attrs: AdminAttrs) => {
-    return new Admin(attrs);
-};
-
-const Admin = mongoose.model<AdminAttrs, AdminModel>("Admin", adminSchema);
+const Admin = mongoose.models.Admin || mongoose.model<AdminAttrs>("Admin", adminSchema);
 
 export { Admin };

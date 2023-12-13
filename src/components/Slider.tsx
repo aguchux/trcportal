@@ -1,5 +1,4 @@
-"use client"
-
+import Link from 'next/link'
 import React from 'react'
 
 export default function Slider() {
@@ -12,9 +11,9 @@ export default function Slider() {
                             <div className="row">
                                 <div className="col-md-9">
                                     <div className="slider-content text-white pb-5 mb-5">
-                                        <h2 className="display-3">Better Education For a Better World</h2>
-                                        <p>Best Education Theme In 2019</p>
-                                        <a href="#" className="button_one mt-4">Contact Us</a>
+                                        <h2 className="display-3">Helping Nigerians to Study in the UK</h2>
+                                        <p className='trc-text-2xl trc-font-bold'>TRC operates in Europe, America, Canada and Australia</p>
+                                        <Link href="#" className="button_one mt-4 trc-text-2xl trc-font-extrabold">Apply with TRC Free</Link>
                                     </div>
                                 </div>
                             </div>
@@ -25,9 +24,9 @@ export default function Slider() {
                             <div className="row">
                                 <div className="col-md-8">
                                     <div className="slider-content text-white pb-5 mb-5">
-                                        <h2 className="display-3">Standart  Syllebaus For Students</h2>
-                                        <p>Best Education Theme In 2019</p>
-                                        <a href="#" className="button_one mt-4">Contact Us</a>
+                                        <h2 className="display-3">Hassle-free & Fast VISA UK assistance.</h2>
+                                        <p className='trc-text-2xl trc-font-bold'>TRC operates in Europe, America, Canada and Australia</p>
+                                        <Link href="#" className="button_one mt-4 trc-text-2xl trc-font-extrabold">See How it works</Link>
                                     </div>
                                 </div>
                             </div>
@@ -38,9 +37,9 @@ export default function Slider() {
                             <div className="row">
                                 <div className="col-md-8">
                                     <div className="slider-content text-white pb-5 mb-5">
-                                        <h2 className="display-3">Maintaince Educational Value</h2>
-                                        <p>Best Education Theme In 2019</p>
-                                        <a href="#" className="button_one mt-4">Contact Us</a>
+                                        <h2 className="display-3">University Search and Cunsultancy</h2>
+                                        <p className='trc-text-2xl trc-font-bold'>TRC operates in Europe, America, Canada and Australia</p>
+                                        <Link href="#" className="button_one mt-4 trc-text-2xl trc-font-extrabold">Contact Us Today</Link>
                                     </div>
                                 </div>
                             </div>
@@ -49,6 +48,6 @@ export default function Slider() {
                 </div>
                 <div className="swiper-pagination" />
             </section>
-            </>
+        </>
     )
 }

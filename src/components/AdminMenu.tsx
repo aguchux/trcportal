@@ -1,5 +1,3 @@
-"use client"
-
 import React from 'react'
 import { IMAGES } from '@/config/images'
 import Image from 'next/image'
@@ -22,9 +20,21 @@ const AdminMenu = () => {
                                 <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                                         <li className="nav-item">
-                                            <Link className="nav-link" href="/admin" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <Link className="nav-link" href="/admin">
                                                 Dashboard
                                             </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" href="/admin/pages">Pages</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" href="/admin/contacts">Contacts</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" href="/admin/applications">Applications</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" href="/admin/settings">Settings</Link>
                                         </li>
                                     </ul>
                                     <div className="collapse-bar">

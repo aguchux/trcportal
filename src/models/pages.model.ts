@@ -1,24 +1,17 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 export interface PageAttrs {
-    slug: string;
+    _id?: Schema.Types.ObjectId,
     title: string;
-    description?: string;
-    content?: string;
-}
-
-interface PageDoc extends Document {
     slug: string;
-    title: string;
-    description?: string;
-    content?: string;
+    pageType: string;
+    content: string;
+    sortNumber?: number;
+    createdAt?: string;
+    updatedAt?: string;
 }
 
-interface PageModel extends mongoose.Model<PageDoc> {
-    build(attrs: PageAttrs): PageDoc;
-}
-
-const pageSchema = new Schema({
+const pageSchema = new Schema<PageAttrs>({
     slug: {
         type: String,
         trim: true,
@@ -29,28 +22,21 @@ const pageSchema = new Schema({
         trim: true,
         required: true,
     },
-    description: {
+    pageType: {
         type: String,
-        trim: true,
+        default: 'PAGE',
     },
     content: {
         type: String,
     },
-}, {
-    timestamps: true,
-    toJSON: {
-        transform: function (doc, ret) {
-            ret.id = ret._id;
-            delete ret._id;
-            delete ret.__v;
-        }
+    sortNumber: {
+        type: Number,
+        default: 0,
     }
+}, {
+    timestamps: true
 });
 
-pageSchema.statics.build = (attrs: PageAttrs) => {
-    return new Page(attrs);
-};
-
-const Page = mongoose.model<PageAttrs, PageModel>("Page", pageSchema);
+const Page = mongoose.models.Page || mongoose.model<PageAttrs>("Page", pageSchema);
 
 export { Page };
