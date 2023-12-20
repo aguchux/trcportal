@@ -1,15 +1,20 @@
+"use client"
+
 import { apiFetcher } from '@/axios';
 import { PageAttrs } from '@/models/pages.model';
 import { useRouter } from 'next/router';
 import React from 'react'
 import { MENU_FORMS } from '@/config/forms';
+import { useParams, usePathname } from 'next/navigation';
 
 
 
 const BreadCrumb = () => {
 
-    const { query, pathname } = useRouter();
-    const { slug } = query;
+    const params = useParams<{ slug: string }>();
+    const slug = params?.slug;
+
+    const pathname = usePathname();
 
     const [isForm, setIsForm] = React.useState<boolean>(false);
     const [selectedMenu, setSelectedMenu] = React.useState<string>('');
@@ -21,7 +26,7 @@ const BreadCrumb = () => {
         content: ''
     } as PageAttrs);
 
-    
+
     const findMenu = (slug: string) => {
         const menu = MENU_FORMS.find((m) => m.slug === slug);
         return menu;
@@ -29,7 +34,7 @@ const BreadCrumb = () => {
 
     React.useEffect(() => {
         if (!slug || slug === undefined || slug.length <= 0) return;
-        if (pathname.startsWith('/forms')) {
+        if (pathname?.startsWith('/forms')) {
             setIsForm(true);
             const menu = findMenu(slug as string);
             setMenu({

@@ -1,33 +1,32 @@
+"use client"
+
 import React from 'react'
-import { apiFetcher } from '@/axios'
 import { IMAGES } from '@/config/images'
 import Image from 'next/image'
 import Link from 'next/link'
 import { PageAttrs } from '@/models/pages.model'
-import { useRouter } from 'next/router'
-import { useQuery } from '@tanstack/react-query'
+import { useParams } from 'next/navigation'
 
 const Menu = () => {
 
-    const {query} = useRouter();
-    const {slug} = query;
+    const params = useParams<{ slug: string }>();
+    const slug = params?.slug;
+
+    // const {query} = useRouter();
+    // const {slug} = query;
     const [menus, setMenus] = React.useState<PageAttrs[]>([] as PageAttrs[]);
     const [selectedMenu, setSelectedMenu]  = React.useState<string>('');
 
-    const { data:pagesApiResult, isLoading, isRefetching, isPending } = useQuery<ResponseData>({
-        queryKey: ['pages'],
-        queryFn: async () => fetch('/api/pages').then(res => res.json()),
-        staleTime: Number(process.env.CATCHE_STALE_TIME || 1000 * 60 * 10),
-    });
-
     React.useEffect(() => {
-        if(!pagesApiResult?.success) return;
-        const {data} = pagesApiResult;
-        const rawMenus = data || [];
-        setMenus(rawMenus)
-        if(!slug) return;
-        setSelectedMenu(slug as string);
-    }, [pagesApiResult])
+        fetch('/api/pages')
+            .then((res) => res.json())
+            .then((data) => {
+                const rawMenus = data.data || [];
+                setMenus(rawMenus)
+                if (!slug) return;
+                setSelectedMenu(slug as string);
+            })
+    }, [slug])
 
     return (
         <>

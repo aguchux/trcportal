@@ -1,22 +1,21 @@
 
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+"use client"
+
 import { useEffect, useState } from 'react';
 import { getCookie } from 'cookies-next';
 import { apiFetcher } from '@/axios';
-import { useRouter } from 'next/router';
 
 export const useAuth = () => {
-    const { isReady } = useRouter();
-    const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
-    const queryClient = useQueryClient();
+    const [loggedIn, setLoggedIn] = useState<boolean>(false);
+    const [admin, setAdmin] = useState<IAdmin | null>(null);
+    const [busy, setBusy] = useState<boolean>(false);
 
     const token = getCookie('token');
 
     useEffect(() => {
         if (!token) {
             setLoggedIn(false)
-            queryClient.clear();
             return;
         };
         setLoggedIn(true)
@@ -25,6 +24,7 @@ export const useAuth = () => {
     const authLogin = async (logon: TLogin): Promise<Boolean> => {
         const { email, password, remember } = logon;
         try {
+            setBusy(true);
             const login = await apiFetcher.post('/login', {
                 email,
                 password
@@ -36,17 +36,22 @@ export const useAuth = () => {
             return true;
         } catch (error) {
             return false;
+        } finally {
+            setBusy(false);
         }
     }
 
     const authLogout = async (): Promise<Boolean> => {
         try {
+            setBusy(true);
             const logout = await apiFetcher.post('/logout');
             const { data } = logout;
             if (!data.success) return false;
             return true;
         } catch (error) {
             return false;
+        } finally {
+            setBusy(false);
         }
     }
 
@@ -55,24 +60,34 @@ export const useAuth = () => {
             return null;
         };
         try {
+            setBusy(true);
             const result = await apiFetcher.get(`/info?token=${token}`);
             const { data } = result;
             if (!data.success) return null;
             return data.data;
         } catch (error) {
             return null;
+        } finally {
+            setBusy(false);
         }
     }
 
-    const { data: admin, isLoading, isRefetching, isPending } = useQuery({
-        queryKey: ['admin'],
-        queryFn: () => authMe().then((data) => data),
-        enabled: isReady && !!token,
-        staleTime: Number(process.env.CATCHE_STALE_TIME || 1000 * 60 * 10)
-    });
+    useEffect(() => {
+        apiFetcher<ResponseData>('/info?token=' + token)
+            .then((response) => {
+                const { data } = response;
+                if (!data.success) return;
+                setAdmin(data.data);
+                setLoggedIn(true)
+            }).catch((error) => {
+                setLoggedIn(false)
+            })
+        setLoggedIn(true)
+    }, [token]);
+
 
     return {
-        busy: isLoading || isPending,
+        busy,
         admin,
         authLogin,
         authLogout,

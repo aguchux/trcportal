@@ -14,8 +14,8 @@ export default function AdminContacts() {
     apiFetcher<ResponseData>('/contacts')
       .then((result) => {
         setLoading(false)
-        const {data} = result
-        if(!data.success) return;
+        const { data } = result
+        if (!data.success) return;
         setContacts(data.data)
       })
       .catch((err) => {
@@ -23,7 +23,7 @@ export default function AdminContacts() {
         setLoading(false)
       })
   }, [])
-  
+
   return (
     <AdminLayout>
       <PageTitleBar title="Dashboard (Contacts)" loading={loading} />
@@ -41,13 +41,26 @@ export default function AdminContacts() {
             </thead>
             <tbody>
               {/* Table rows go here */}
-              <tr className="trc-cursor-pointer hover:trc-bg-pink-300" onClick={() => { }}>
-                <td className="trc-border-b trc-p-2">1</td>
-                <td className="trc-border-b trc-p-2">1</td>
-                <td className="trc-border-b trc-p-2">John Doe</td>
-                <td className="trc-border-b trc-p-2">john@example.com</td>
-                <td className="trc-border-b trc-p-2">john@example.com</td>
-              </tr>
+              {contacts.map((contact, index) => (
+                <>
+                  <tr key={index} className="trc-cursor-pointer trc-bg-pink-100 hover:trc-bg-pink-300 trc-mt-2">
+                    <td className="trc-border-b trc-p-2">{contact.name}</td>
+                    <td className="trc-border-b trc-p-2">{contact.email}</td>
+                    <td className="trc-border-b trc-p-2">{contact.mobile}</td>
+                    <td className="trc-border-b trc-p-2">{contact.subject}</td>
+                    <td className="trc-border-b trc-p-2">
+                      <button className="trc-bg-green-700 trc-px-2 trc-py-1 trc-text-white trc-p-2 ">View Message</button>
+                    </td>
+                  </tr>
+                  <tr className='trc-mb-2 trc-hidden'>
+                    <td colSpan={5}>
+                      <div className="trc-border trc-p-2 trc-bg-gray-200 trc-rounded trc-my-3">
+                        <p className="trc-text-gray-700">{contact.message}</p>
+                      </div>
+                    </td>
+                  </tr>
+                </>
+              ))}
               {/* Add more rows as needed */}
             </tbody>
           </table>
