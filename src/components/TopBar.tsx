@@ -31,7 +31,7 @@ function TopBar() {
                                         </div>
                                     </div>
                                     <div className="single_info">
-                                        <button className="special-button">Apply Now <i className="fa fa-angle-right" /> <span className="button_icon"><i className="far fa-file-alt" /></span></button>
+                                        <Link href={'/forms/application'} className="special-button">Apply Now <i className="fa fa-angle-right" /> <span className="button_icon"><i className="far fa-file-alt" /></span></Link>
                                     </div>
                                 </div>
                             </div>
