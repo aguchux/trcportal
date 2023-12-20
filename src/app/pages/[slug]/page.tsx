@@ -49,9 +49,8 @@ const PageInfo = ({ params }: { params: { slug: string } }) => {
 
     return (
         <>
-            <div className="page-wrapper trc-my-[100px]">
+            <div className="page-wrapper trc-py-[50px]">
                 <div className="container">
-                    {busy ? <div className="text-center">Loading...</div> :
                         <div className="row">
                             <div className="col-lg-8 mb-3d-5" data-aos="fade-up">
                                 {/* Start Blog Details */}
@@ -61,7 +60,7 @@ const PageInfo = ({ params }: { params: { slug: string } }) => {
                                     </div>
                                     <div className="details-meta">
                                         <div className="single-meta">
-                                            <p><i className="fas fa-calendar-alt" /> {pageInfo?.createdAt}</p>
+                                        <p><i className="fas fa-calendar-alt" /> {busy ? <span>Loading...</span> : pageInfo?.createdAt}</p>
                                         </div>
                                         <div className="single-meta">
                                             <p><i className="far fa-heart" /> 0 views</p>
@@ -71,7 +70,7 @@ const PageInfo = ({ params }: { params: { slug: string } }) => {
                                         </div>
                                     </div>
                                     <div className="details-text pt-4">
-                                        <CKEditorOutput htmlContent={pageInfo?.content.toString()} />
+                                    {busy ? <h3>Loading...</h3> : <CKEditorOutput htmlContent={pageInfo?.content.toString()} />}
                                     </div>
 
                                 </div>
@@ -92,9 +91,7 @@ const PageInfo = ({ params }: { params: { slug: string } }) => {
                                 </div>
                                 {/* End Sidebar */}
                             </div>
-                        </div>
-                    }
-
+                    </div>
                 </div>
             </div>
         </>
