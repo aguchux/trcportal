@@ -15,8 +15,8 @@ export const MENU_FORMS = [
         menuTitle: 'Testimonies',
     },
     {
-        id: 'apply',
-        slug: 'apply',
+        id: 'application',
+        slug: 'application',
         title: 'Application Form',
         menuTitle: 'Application Form',
     },

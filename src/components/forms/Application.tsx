@@ -69,10 +69,11 @@ const Application = (props: Props) => {
             <div className="page-wrapper trc-my-10">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-8 mb-3d-5 trc-mx-auto">
+                        <div className="col-lg-12 mb-3d-5">
                             <div className="main-content">
                                 <div className="contact-from-wrapper-2">
                                     <h2 className="section-heading">Register With Us</h2>
+                                    <hr />
                                     <form action="#" className="contact-form mt-4" onSubmit={handleSubmit(onSubmit)}>
                                         <div className="row">
 
@@ -80,56 +81,76 @@ const Application = (props: Props) => {
                                                 {completed}
                                             </div>}
 
-                                            <div className="col-md-6">
+                                            <div className="col-6">
                                                 <div className="form-group">
-                                                    <input type="text" placeholder="First Name" {...register("firstName", { required: true })} />
+                                                    <label htmlFor="firstName">First Name</label>
+                                                    <input type="text" className="form-control" placeholder="First Name" {...register("firstName", { required: true })} />
                                                     {errors.firstName && <span className="text-danger">This field is required</span>}
                                                 </div>
                                             </div>
-                                            <div className="col-md-6">
+                                            <div className="col-6">
                                                 <div className="form-group">
-                                                    <input type="text" placeholder="Last Name" {...register("lastName", { required: true })} />
+                                                    <label htmlFor="lastName">Last Name</label>
+                                                    <input type="text" className="form-control" placeholder="Last Name" {...register("lastName", { required: true })} />
                                                     {errors.lastName && <span className="text-danger">This field is required</span>}
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
                                                 <div className="form-group">
-                                                    <input type="email" placeholder="Email" {...register("email", { required: true })} />
+                                                    <label htmlFor="email">Email</label>
+                                                    <input type="email" className="form-control" placeholder="Email" {...register("email", { required: true })} />
                                                     {errors.email && <span className="text-danger">This field is required</span>}
                                                 </div>
                                             </div>
 
                                             <div className="col-md-6">
                                                 <div className="form-group">
-                                                    <input type="text" placeholder="Mobile" {...register("mobile", { required: true })} />
+                                                    <label htmlFor="mobile">Mobile/Telephone</label>
+                                                    <input type="text" className="form-control" placeholder="Mobile" {...register("mobile", { required: true })} />
                                                     {errors.mobile && <span className="text-danger">This field is required</span>}
                                                 </div>
                                             </div>
 
                                             <div className="col-md-6">
                                                 <div className="form-group">
-                                                    <input type="text" placeholder="Country" {...register("country", { required: true })} />
+                                                    <label htmlFor="country">Country of Origin</label>
+                                                    <input type="text" className="form-control" placeholder="Country" {...register("country", { required: true })} />
                                                     {errors.country && <span className="text-danger">This field is required</span>}
                                                 </div>
                                             </div>
 
                                             <div className="col-md-6">
                                                 <div className="form-group">
-                                                    <input type="text" placeholder="Purpose" {...register("purpose", { required: true })} />
+                                                    <label htmlFor="purpose">Purpose of Application</label>
+                                                    <select className="form-control" {...register("purpose", { required: true })}>
+                                                        <option value="">Select Purpose</option>
+                                                        <option value="General Enquiries">General Enquiries</option>
+                                                        <option value="Seeking Admission">Seeking Admission</option>
+                                                        <option value="Study VISA Assistance">Study VISA Assistance</option>
+                                                    </select>
                                                     {errors.purpose && <span className="text-danger">This field is required</span>}
                                                 </div>
                                             </div>
 
                                             <div className="col-md-6">
                                                 <div className="form-group">
-                                                    <input type="text" placeholder="To Study" {...register("toStudy", { required: true })} />
+                                                    <label htmlFor="toStudy">Desired Field of Study</label>
+                                                    <input type="text" className="form-control" placeholder="Desired Field of Study" {...register("toStudy", { required: true })} />
+                                                    {errors.toStudy && <span className="text-danger">This field is required</span>}
+                                                </div>
+                                            </div>
+
+                                            <div className="col-md-6">
+                                                <div className="form-group">
+                                                    <label htmlFor="toStudy">Desired Country of Study</label>
+                                                    <input type="text" className="form-control" placeholder="Desired Country of Study" {...register("toStudy", { required: true })} />
                                                     {errors.toStudy && <span className="text-danger">This field is required</span>}
                                                 </div>
                                             </div>
 
                                             <div className="col-md-12">
                                                 <div className="form-group">
-                                                    <textarea id="notes" cols={30} rows={10} placeholder="Notes" {...register("notes", { required: true })} />
+                                                    <textarea id="notes" className="form-control" cols={30} rows={10} placeholder="Notes" {...register("notes", { required: true })} />
                                                     {errors.notes && <span className="text-danger">This field is required</span>}
                                                 </div>
                                             </div>
