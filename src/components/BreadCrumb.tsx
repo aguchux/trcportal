@@ -58,7 +58,7 @@ const BreadCrumb = () => {
 
     return (
         <>
-            {selectedMenu && (
+            {(selectedMenu && slug) && (
                 <section className="hero-section height-470" style={{ backgroundImage: 'url(assets/images/about_us.jpg)' }}>
                     <div className="hero-area">
                         <div className="container">

@@ -1,3 +1,5 @@
+import '@/styles/globals.css'
+
 import Script from 'next/script'
 import React from 'react'
 import { Metadata } from 'next'
@@ -11,7 +13,6 @@ export const metadata: Metadata = {
     title: 'Home | The Recruitment Consult',
     description: 'Welcome to The Recruitment Consult',
 }
-
 
 interface Props {
     children: React.ReactNode
@@ -65,9 +66,7 @@ function RootLayout({ children }: Props) {
                             </div>
                         </div>
                     </header>
-                    <div className="trc-my-10 my-10 trc-px-10">
-                        {children}
-                    </div>
+                    {children}
                     <Footer />
                     <Script src="assets/js/jquery-3.4.0.min.js" strategy='beforeInteractive' />
                     <Script src="assets/js/popper.min.js" strategy='lazyOnload' />

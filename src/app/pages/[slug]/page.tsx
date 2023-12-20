@@ -49,8 +49,8 @@ const PageInfo = ({ params }: { params: { slug: string } }) => {
 
     return (
         <>
-            <div className="page-wrapper">
-                <div className="container trc-my-[20px]">
+            <div className="page-wrapper trc-my-[100px]">
+                <div className="container">
                     {busy ? <div className="text-center">Loading...</div> :
                         <div className="row">
                             <div className="col-lg-8 mb-3d-5" data-aos="fade-up">
