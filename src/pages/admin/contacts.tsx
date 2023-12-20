@@ -4,6 +4,7 @@ import AdminLayout from '@/components/layouts/AdminLayout'
 import { ContactAttrs } from '@/models/contacts.model'
 import { apiFetcher } from '@/axios'
 import PageTitleBar from '@/components/admins/PageTitleBar'
+import { ToDate } from '@/utils'
 
 export default function AdminContacts() {
 
@@ -36,7 +37,7 @@ export default function AdminContacts() {
                 <th className="trc-border-b-2 trc-p-2">EMAIL</th>
                 <th className="trc-border-b-2 trc-p-2">MOBILE</th>
                 <th className="trc-border-b-2 trc-p-2">SUBJECT</th>
-                <th className="trc-border-b-2 trc-p-2">-</th>
+                <th className="trc-border-b-2 trc-p-2">DATE</th>
               </tr>
             </thead>
             <tbody>
@@ -48,13 +49,11 @@ export default function AdminContacts() {
                     <td className="trc-border-b trc-p-2">{contact.email}</td>
                     <td className="trc-border-b trc-p-2">{contact.mobile}</td>
                     <td className="trc-border-b trc-p-2">{contact.subject}</td>
-                    <td className="trc-border-b trc-p-2">
-                      <button className="trc-bg-green-700 trc-px-2 trc-py-1 trc-text-white trc-p-2 ">View Message</button>
-                    </td>
+                    <td className="trc-border-b trc-p-2">{ToDate(contact.createdAt)}</td>
                   </tr>
-                  <tr className='trc-mb-2 trc-hidden'>
+                  <tr className='trc-mb-2'>
                     <td colSpan={5}>
-                      <div className="trc-border trc-p-2 trc-bg-gray-200 trc-rounded trc-my-3">
+                      <div className="trc-border trc-px-2 trc-bg-gray-200 trc-rounded trc-my-3">
                         <p className="trc-text-gray-700">{contact.message}</p>
                       </div>
                     </td>

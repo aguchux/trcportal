@@ -9,7 +9,6 @@ type Props = {}
 const Application = (props: Props) => {
     const [busy, setBusy] = React.useState(false);
     const { register, handleSubmit, watch, formState: { errors } } = useForm({
-        mode: 'onSubmit',
         values: {
             firstName: '',
             lastName: '',
@@ -18,6 +17,7 @@ const Application = (props: Props) => {
             country: '',
             purpose: '',
             toStudy: '',
+            countryToStudy: '',
             notes: ''
         }
     });
@@ -34,6 +34,7 @@ const Application = (props: Props) => {
                 country: data.country,
                 purpose: data.purpose,
                 toStudy: data.toStudy,
+                countryToStudy: data.countryToStudy,
                 notes: data.notes
             });
             const { data: resData } = response;
@@ -135,22 +136,22 @@ const Application = (props: Props) => {
                                             <div className="col-md-6">
                                                 <div className="form-group">
                                                     <label htmlFor="toStudy">Desired Field of Study</label>
-                                                    <input type="text" className="form-control" placeholder="Desired Field of Study" {...register("toStudy", { required: true })} />
+                                                    <input type="text" className="form-control" placeholder="Desired Field of Study" {...register("toStudy")} />
                                                     {errors.toStudy && <span className="text-danger">This field is required</span>}
                                                 </div>
                                             </div>
 
                                             <div className="col-md-6">
                                                 <div className="form-group">
-                                                    <label htmlFor="toStudy">Desired Country of Study</label>
-                                                    <input type="text" className="form-control" placeholder="Desired Country of Study" {...register("toStudy", { required: true })} />
+                                                    <label htmlFor="countryToStudy">Desired Country of Study</label>
+                                                    <input type="text" className="form-control" placeholder="Desired Country of Study" {...register("countryToStudy")} />
                                                     {errors.toStudy && <span className="text-danger">This field is required</span>}
                                                 </div>
                                             </div>
 
                                             <div className="col-md-12">
                                                 <div className="form-group">
-                                                    <textarea id="notes" className="form-control" cols={30} rows={10} placeholder="Notes" {...register("notes", { required: true })} />
+                                                    <textarea id="notes" className="form-control" cols={30} rows={10} placeholder="Notes" {...register("notes")} />
                                                     {errors.notes && <span className="text-danger">This field is required</span>}
                                                 </div>
                                             </div>

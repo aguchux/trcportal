@@ -2,22 +2,27 @@ import mongoose, { Schema } from 'mongoose';
 
 export interface ApplicationAttrs {
     _id?: Schema.Types.ObjectId,
+    title: string;
     firstName: string;
     lastName: string;
     email: string;
     mobile: string;
-    city: string;
-    state: string;
-    zip: string;
-    country: string;
-    message: string;
-    subject: string;
-    selfResume: string;
+    country?: string;
+    purpose?: string;
+    toStudy?: string;
+    countryToStudy?: string;
+    notes?: string;
     createdAt?: string;
     updatedAt?: string;
 }
 
+
 const applicationSchema = new Schema<ApplicationAttrs>({
+    title: {
+        type: String,
+        enum: ["Mr.", "Mrs.", "Miss", "Dr.", "Prof.", "Rev."],
+        default: "Mr.",
+    }, 
     firstName: {
         type: String,
         trim: true,
@@ -36,26 +41,25 @@ const applicationSchema = new Schema<ApplicationAttrs>({
         type: String,
         trim: true,
     },
-    city: {
-        type: String,
-    },
-    state: {
-        type: String,
-    },
-    zip: {
-        type: String,
-    },
     country: {
         type: String,
+        trim: true,
     },
-    subject: {
+    purpose: {
         type: String,
+        trim: true,
     },
-    message: {
+    toStudy: {
         type: String,
+        trim: true,
     },
-    selfResume: {
+    countryToStudy: {
         type: String,
+        trim: true,
+    },
+    notes: {
+        type: String,
+        trim: true,
     },
 
 }, {

@@ -34,6 +34,9 @@ const AdminMenu = () => {
                                             <Link className="nav-link" href="/admin/applications">Applications</Link>
                                         </li>
                                         <li className="nav-item">
+                                            <Link className="nav-link" href="/admin/testimonials">Testimonials</Link>
+                                        </li>
+                                        <li className="nav-item">
                                             <Link className="nav-link" href="/admin/settings">Settings</Link>
                                         </li>
                                     </ul>

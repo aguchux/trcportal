@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
 import { apiFetcher } from '@/axios';
 
-
 type Props = {}
 
 const ContactUs = (props: Props) => {
@@ -116,9 +115,10 @@ const ContactUs = (props: Props) => {
                             <div className="highlights-section trc-bg-blue-500 text-white p-4">
                                 <h4>Don’t Hesitate to contact with us for any kind of information</h4>
                                 <ul>
-                                    <li><i className="fas fa-paper-plane" /> 900 Lucerne Terrace,Orlando, FL 32806, USA</li>
-                                    <li><i className="fas fa-mobile-alt" /> +198 555 4444, +193 444 9898</li>
-                                    <li><i className="fas fa-envelope" /> contact@bizteto.com</li>
+                                    <li><i className="fas fa-paper-plane" /> 83 Ziks Avenue, Uwani, Enugu.</li>
+                                    <li><i className="fas fa-mobile-alt" /> +234 815 811 6094</li>
+                                    <li><i className="fas fa-mobile-alt" /> +44 740 535 7303</li>
+                                    <li><i className="fas fa-envelope" /> info@therecruitmentconsult.com</li>
                                 </ul>
                                 <div className="social-links">
                                     <ul>

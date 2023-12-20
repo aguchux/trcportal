@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { Admin } from './admins.model';
 import { Application } from './applications.model';
+import { Testimonies } from './testimonies.model';
 import { Page } from './pages.model';
 import { Contact } from './contacts.model';
 import { Metric } from './metrics.model';
@@ -111,6 +112,7 @@ export const dbCon = async () => {
         Page,
         Contact,
         Metric,
-        Setting
+        Setting,
+        Testimonies
     }
 }

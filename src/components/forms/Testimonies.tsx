@@ -15,9 +15,12 @@ const Testimonies = (props: Props) => {
                                 <div className="contact-from-wrapper-2">
                                     <h2 className="section-heading">Testimonies</h2>
                                     <div className="row">
+                                        <div className="col-md-12 col-12 trc-my-10">
+
+                                        </div>
                                         <div className="col-md-4">
                                             <div className="single-testimonial border-2 p-4">
-
+                                                <div className='trc-clear-both border-sm w-full trc-bg-opacity-100 trc-opacity-100 trc-min-h-[200px] trc-bg-gray-200 hover:trc-bg-gray-300 hover:trc-opacity-25 hover:trc-border-orange-600 trc-mb-3 trc-rounded-2xl'></div>
                                                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla sint occaecat cupidatat non proident, sunt in culpa.</p>
                                                 <div className="testimonial-referance">
                                                     <p><strong>Jhon Smith; </strong> CEO &amp; Founder</p>
