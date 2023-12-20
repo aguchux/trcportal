@@ -3,8 +3,7 @@
 import NewsWidget from '@/components/NewsWidget';
 import { PageAttrs } from '@/models/pages.model';
 import React from 'react'
-
-
+import { ToDate } from '@/utils';
 
 interface CKProps {
     htmlContent: string;
@@ -45,8 +44,6 @@ const PageInfo = ({ params }: { params: { slug: string } }) => {
         getPage();
     }, [slug])
 
-
-
     return (
         <>
             <div className="page-wrapper trc-py-[50px]">
@@ -60,13 +57,13 @@ const PageInfo = ({ params }: { params: { slug: string } }) => {
                                     </div>
                                     <div className="details-meta">
                                         <div className="single-meta">
-                                        <p><i className="fas fa-calendar-alt" /> {busy ? <span>Loading...</span> : pageInfo?.createdAt}</p>
+                                        <p><i className="fas fa-calendar-alt" /> {busy ? <span>Loading...</span> : ToDate(pageInfo?.createdAt)}</p>
                                         </div>
                                         <div className="single-meta">
-                                            <p><i className="far fa-heart" /> 0 views</p>
+                                        <p><i className="far fa-heart" /> {busy ? <span>Loading...</span> : pageInfo?.views || 0} views</p>
                                         </div>
                                         <div className="single-meta">
-                                            <p><i className="far fa-comment-alt" /> 0 Comments</p>
+                                        <p><i className="far fa-comment-alt" /> {busy ? <span>Loading...</span> : pageInfo?.comments?.length || 0} Comments</p>
                                         </div>
                                     </div>
                                     <div className="details-text pt-4">
