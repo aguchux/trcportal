@@ -56,6 +56,9 @@ const Menu = () => {
                                             </li>
                                         ))}
                                         <li className="nav-item">
+                                            <Link href="/forms/contact-us" className="nav-link">Contact</Link>
+                                        </li>
+                                        <li className="nav-item">
                                             <Link href="#search_modal" data-toggle="modal" data-target="#search_modal" className="nav-link"><i className="fa fa-search" /></Link>
                                         </li>
                                     </ul>

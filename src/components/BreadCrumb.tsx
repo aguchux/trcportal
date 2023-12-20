@@ -2,12 +2,16 @@ import { apiFetcher } from '@/axios';
 import { PageAttrs } from '@/models/pages.model';
 import { useRouter } from 'next/router';
 import React from 'react'
+import { MENU_FORMS } from '@/config/forms';
+
+
 
 const BreadCrumb = () => {
 
-    const { query } = useRouter();
+    const { query, pathname } = useRouter();
     const { slug } = query;
 
+    const [isForm, setIsForm] = React.useState<boolean>(false);
     const [selectedMenu, setSelectedMenu] = React.useState<string>('');
     const [menu, setMenu] = React.useState<PageAttrs>({
         title: '',
@@ -17,16 +21,34 @@ const BreadCrumb = () => {
         content: ''
     } as PageAttrs);
 
+    
+    const findMenu = (slug: string) => {
+        const menu = MENU_FORMS.find((m) => m.slug === slug);
+        return menu;
+    }
 
     React.useEffect(() => {
-        if(!slug || slug===undefined || slug.length<=0) return;
-        const fetchMenu = async () => {
-            const response = await apiFetcher.get<ResponseData>(`/pages/info?slug=${slug}`);
-            setMenu(response.data.data);
-            setSelectedMenu(response.data.data.slug);
+        if (!slug || slug === undefined || slug.length <= 0) return;
+        if (pathname.startsWith('/forms')) {
+            setIsForm(true);
+            const menu = findMenu(slug as string);
+            setMenu({
+                title: menu?.title,
+                pageType: 'Page',
+                slug: menu?.slug,
+                sortNumber: 0,
+                content: ''
+            } as PageAttrs);
+            setSelectedMenu(String(menu?.slug));
+        } else {
+            const fetchMenu = async () => {
+                const response = await apiFetcher.get<ResponseData>(`/pages/info?slug=${slug}`);
+                setMenu(response.data.data);
+                setSelectedMenu(response.data.data.slug);
+            }
+            fetchMenu();
         }
-        fetchMenu();
-    }, [query])
+    }, [slug, pathname])
 
 
     return (
