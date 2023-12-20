@@ -17,3 +17,12 @@ interface IAdmin {
     name: string;
     lastSeen: Date;
 }
+
+type PageProps = {
+    _id?: string,
+    title: string,
+    slug: string,
+    pageType: string,
+    content: string,
+    sortNumber: number
+}

@@ -2,60 +2,82 @@
 import React from 'react'
 import AdminLayout from '@/components/layouts/AdminLayout'
 import { apiFetcher } from '@/axios'
-import { PageAttrs } from '@/models/pages.model'
 import PageTitleBar from '@/components/admins/PageTitleBar'
 import Link from 'next/link'
-import Head from 'next/head'
 import { toSlug } from '@/utils'
 import { useRouter } from 'next/router'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import dynamic from 'next/dynamic'
+const RichTextEditor = dynamic(
+  () => import('@/components/RichTextEditor'),
+  { ssr: false }
+)
+import { useForm } from 'react-hook-form'
+import Swal from 'sweetalert2'
 
-type PageProps = {
-    title: string,
-    pageType: string,
-    content: string,
-    sortNumber:number
-}
 
 export default function AdminPages() {
 
-  const [page, setPage] = React.useState<PageProps>({} as PageProps)
-  const [loading, setLoading] = React.useState(false)
-  const [pageContent, setPageContent] = React.useState<string>('');
+  const [page, setPage] = React.useState<PageProps>({
+    content: '',
+  } as PageProps)
 
-  React.useEffect(() => {
-    setPage({
+  const [loading, setLoading] = React.useState(false)
+  const { push } = useRouter();
+
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    values: {
       title: '',
       pageType: 'Page',
-      content: '',
       sortNumber: 0
-    })
-  }, [])
-  
-  const {push} = useRouter();
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    const { title, pageType,sortNumber, content } = page;
-    const slug = toSlug(title);
-    const data = {
-      title,
-      pageType,
-      slug,
-      sortNumber,
-      content
     }
+  });
+
+  // on Submit
+  const onSubmit = async (data: any) => {
+    setLoading(true);
+    const slug = toSlug(data.title);
     try {
       const result = await apiFetcher<ResponseData>('/pages/create', {
         method: 'POST',
-        data
+        data: {
+          ...data,
+          slug: slug,
+          content: page.content
+        }
       })
       const { data: resData } = result;
-      if (!resData.success) return;
-      push('/admin/pages');
+      if (!resData.success) {
+        Swal.fire(
+          'Not Created',
+          'Your page failed and was not created.',
+          'error'
+        )
+        return;
+      };
+      await Swal.fire(
+        {
+          title: 'Created!',
+          text: 'Your page has been created.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        }
+      ).then((res) => {
+        if (res.isConfirmed) {
+          push('/admin/pages');
+        }
+      })
     } catch (error) {
       console.log(error);
     }
+  }
+
+  const editorOnChange = async (event: any, editor: ClassicEditor) => {
+    const data = await editor.getData();
+    setPage({
+      ...page,
+      content: data
+    })
   }
 
   return (
@@ -68,7 +90,7 @@ export default function AdminPages() {
             <Link href='/admin/pages' className="btn btn-primary trc-rounded">List Pages</Link>
           </div>
           <hr className="trc-my-5" />
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <table className="trc-min-w-full trc-text-black">
               <thead className="trc-bg-gray-700 trc-rounded trc-text-white">
                 <tr>
@@ -79,61 +101,34 @@ export default function AdminPages() {
               </thead>
               <tbody>
                 {/* Table rows go here */}
-                <tr className="trc-cursor-pointer trc-bg-pink-100 hover:trc-bg-pink-300" onClick={() => { }}>
+                <tr className="trc-cursor-pointer trc-bg-pink-100 hover:trc-bg-pink-300">
                   <td className="trc-border-b trc-p-2">
-                    <input onChange={
-                      (e) => {
-                        setPage({
-                          ...page,
-                          title: e.target.value
-                        })
-
-                      } 
-                    } type="text" required aria-required={true} className="form-control" placeholder='Page Title' />
+                    <input type="text" {...register("title", { required: true })} className="form-control" placeholder='Page Title' />
                   </td>
 
                   <td className="trc-border-b trc-p-2 trc-w-[100px]">
-                    <input onChange={
-                      (e) => {
-                        setPage({
-                          ...page,
-                          sortNumber: Number(e.target.value)
-                        })
-                      } 
-                    } type="number" required aria-required={true} className="form-control" placeholder='0' />
+                    <input {...register("sortNumber", { required: true })} type="number" className="form-control" placeholder='0' />
                   </td>
-                 
+
                   <td className="trc-border-b trc-p-2 trc-w-[300px]">
-                    <select className="form-control" 
-                    onChange={
-                      (e) => {
-                        setPage({
-                          ...page,
-                          pageType: e.target.selectedIndex === 0 ? 'Page' : 'Post'
-                        })
-                      } 
-                    }>
+                    <select className="form-control" {...register("pageType", { required: true })}>
                       <option value="Page">Page</option>
                       <option value="Post">Post</option>
                     </select>
                   </td>
                 </tr>
-                
-                <tr className="trc-cursor-pointer trc-bg-pink-100 hover:trc-bg-pink-300" onClick={() => { }}>
+
+                <tr className="trc-cursor-pointer trc-bg-pink-100 hover:trc-bg-pink-300">
                   <td colSpan={3} className="trc-border-b trc-p-2">
-                    <textarea onChange={
-                      (e) => {
-                        setPage({
-                          ...page,
-                          content: e.target.value
-                        })
-                      } 
-                    } className="form-control" placeholder='Page Content' rows={10}></textarea>
+                    <RichTextEditor
+                      page={page}
+                      onChageFunction={editorOnChange}
+                    />
                   </td>
                 </tr>
-                <tr className="trc-cursor-pointer trc-bg-pink-100 hover:trc-bg-pink-300" onClick={() => { }}>
+                <tr className="trc-cursor-pointer trc-bg-pink-100 hover:trc-bg-pink-300">
                   <td colSpan={3} className="trc-border-b trc-p-2">
-                    <button className="btn btn-primary">Creat Page</button>
+                    <button className="btn btn-primary" type='submit'>Create Page</button>
                   </td>
                 </tr>
                 {/* Add more rows as needed */}

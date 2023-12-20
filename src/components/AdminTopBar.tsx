@@ -24,7 +24,7 @@ function AdminTopBar() {
                         <div className="col-md-12">
                             <div className="header_top d-flex justify-content-between">
                                 <div className="site_logo mb-0">
-                                    <Link href="/admin"><Image src={IMAGES.logo} width={370} alt="logo" className="img-fluid" /></Link>
+                                    <Link href="/admin"><Image src={IMAGES.logo} height={80} alt="logo" className="img-fluid" /></Link>
                                 </div>
                                 <div className="site_info d-flex justify-content-between">
                                     <div className="single_info">

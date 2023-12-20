@@ -104,7 +104,7 @@ export default function AdminPages() {
                   <td className="trc-border-b trc-p-2">{page.sortNumber}</td>
                   <td className="trc-border-b trc-p-2">{page.updatedAt}</td>
                   <td className="trc-border-b trc-p-2 trc-w-[100px] trc-flex">
-                    <Link href={`/admin/pages/edit/${page.slug}`} className="btn btn-primary btn-sm trc-rounded mx-1 my-0 py-0">Edit</Link>
+                    <Link href={`/admin/pages/${page._id}/edit-page`} className="btn btn-primary btn-sm trc-rounded mx-1 my-0 py-0">Edit</Link>
                     <Link href={`#`} onClick={(e) => swalDelete(e, page.slug)} className="btn btn-danger btn-sm trc-rounded mx-1 my-0 py-0">Delete</Link>
                   </td>
                 </tr>
