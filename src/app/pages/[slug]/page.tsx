@@ -1,9 +1,8 @@
-"use client"
-
 import NewsWidget from '@/components/NewsWidget';
 import { PageAttrs } from '@/models/pages.model';
 import React from 'react'
 import { ToDate } from '@/utils';
+import { Metadata } from 'next';
 
 interface CKProps {
     htmlContent: string;
@@ -14,36 +13,32 @@ const CKEditorOutput = ({ htmlContent }: CKProps) => {
     );
 };
 
-type Props = {}
+type Props = {
+    params: {
+        slug: string
+    }
+}
 
-const PageInfo = ({ params }: { params: { slug: string } }) => {
+
+const apiUri = process.env.NEXT_URI || 'http://localhost:3000';
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = params;
+    const url = `${apiUri}/api/pages/page-info-by-slug?pageId=${slug}`;
+    const responsedata = await fetch(url).then((res) => res.json());
+    const pageInfo: PageAttrs = responsedata.data;
+    return {
+        title: pageInfo?.title + ' | The Recruitment Consult' || 'Home | The Recruitment Consult',
+        description: pageInfo?.content || 'The Recruitment Consult is a student recruitment agency based in Nigeria, with a mission to help aspiring students pursue their academic dreams in some of the best schools in Europe, America, Canada and Australia.',
+    };
+}
 
-    const [busy, setBusy] = React.useState(true);
-    const [pageInfo, setPageInfo] = React.useState<PageAttrs>({
-        title: '',
-        pageType: 'Page',
-        slug: '',
-        sortNumber: 0,
-        content: ''
-    } as PageAttrs);
 
-    React.useEffect(() => {
-        const getPage = async () => {
-            try {
-                const result = await fetch(`/api/pages/info?slug=${slug}`);
-                const response = await result.json();
-                const { data } = response;
-                setPageInfo(data);
-            } catch (error) {
-                console.log(error);
-            } finally {
-                setBusy(false);
-            }
-        }
-        getPage();
-    }, [slug])
-
+const PageInfo = async ({ params }: { params: { slug: string } }) => {
+    const { slug } = params;
+    const url = `${apiUri}/api/pages/page-info-by-slug?pageId=${slug}`;
+    const responsedata = await fetch(url).then((res) => res.json());
+    const thisPageInfo: PageAttrs = responsedata.data;
     return (
         <>
             <div className="page-wrapper trc-py-[50px]">
@@ -53,21 +48,21 @@ const PageInfo = ({ params }: { params: { slug: string } }) => {
                                 {/* Start Blog Details */}
                                 <div className="details-wrapper">
                                     <div className="details-title">
-                                        <h2>{pageInfo?.title}</h2>
+                                    <h2>{thisPageInfo?.title}</h2>
                                     </div>
                                     <div className="details-meta">
                                         <div className="single-meta">
-                                        <p><i className="fas fa-calendar-alt" /> {busy ? <span>Loading...</span> : ToDate(pageInfo?.createdAt)}</p>
+                                        <p><i className="fas fa-calendar-alt" /> {!thisPageInfo ? <span>Loading...</span> : ToDate(thisPageInfo?.createdAt)}</p>
                                         </div>
                                         <div className="single-meta">
-                                        <p><i className="far fa-heart" /> {busy ? <span>Loading...</span> : pageInfo?.views || 0} views</p>
+                                        <p><i className="far fa-heart" /> {!thisPageInfo ? <span>Loading...</span> : thisPageInfo?.views || 0} views</p>
                                         </div>
                                         <div className="single-meta">
-                                        <p><i className="far fa-comment-alt" /> {busy ? <span>Loading...</span> : pageInfo?.comments?.length || 0} Comments</p>
+                                        <p><i className="far fa-comment-alt" /> {!thisPageInfo ? <span>Loading...</span> : thisPageInfo?.comments?.length || 0} Comments</p>
                                         </div>
                                     </div>
                                     <div className="details-text pt-4">
-                                    {busy ? <h3>Loading...</h3> : <CKEditorOutput htmlContent={pageInfo?.content.toString()} />}
+                                    {!thisPageInfo ? <h3>Loading...</h3> : <CKEditorOutput htmlContent={thisPageInfo?.content.toString()} />}
                                     </div>
 
                                 </div>

@@ -4,7 +4,6 @@ import { TestimoniesAttrs } from '@/models/testimonies.model';
 type Props = {}
 
 const Testimonies = async (props: Props) => {
-    const [busy, setBusy] = React.useState(false);
     const apiUri = process.env.NEXT_URI || 'http://localhost:3000';
     const response = await fetch(`${apiUri}/api/testimonials`, {
         next: {
