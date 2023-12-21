@@ -2,7 +2,8 @@ import { TestimoniesAttrs } from '@/models/testimonies.model'
 import React from 'react'
 
 const HomeTestimonials = async () => {
-    const output = await fetch('http://localhost:3000//api/testimonials', {
+    const apiUri = process.env.NEXT_URI || 'http://localhost:3000';
+    const output = await fetch(`${apiUri}/api/testimonials`, {
         next: {
             revalidate: 10
         }
