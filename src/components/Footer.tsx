@@ -39,7 +39,7 @@ const Footer = () => {
                         <div className="container-fluid">
                             <div className='trc-py-0 trc-px-10'>
                                 <div className="row">
-                                    <div className="col-md-4 mb-xs-5">
+                                    <div className="col-md-5 mb-xs-5">
                                         <div className="single_widget">
                                             <div className="address-widget">
                                                 <div className="footer-logo">
@@ -51,7 +51,7 @@ const Footer = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-2 mb-3d-5">
+                                    <div className="col-md-3 mb-3d-5">
                                         <div className="single_widget">
                                             <h3>Useful Links</h3>
                                             <div className="widget-list ">
@@ -66,11 +66,15 @@ const Footer = () => {
                                         </div>
                                     </div>
 
-                                    <div className="col-md-6 mb-xs-5">
+                                    <div className="col-md-4 mb-xs-5">
                                         <div className="single_widget">
-                                            <div className='row gap-1 '>
-                                                <div className='col-md-6 trc-min-h-[200px] rounded-lg  trc-bg-green-200'></div>
-                                                <div className='col-md-6 trc-min-h-[200px] rounded-lg  trc-bg-green-200'></div>
+                                            <div className='row'>
+                                                <div className='col-md-6'>
+                                                    <Image src={IMAGES.cert1} alt='' height={250} />
+                                                </div>
+                                                <div className='col-md-6'>
+                                                    <Image src={IMAGES.cert2} alt='' height={250} />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
