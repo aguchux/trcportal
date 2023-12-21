@@ -7,13 +7,13 @@ const HomePopupVideo = () => {
               <div className="video-popup-area default_bg py-5">
                   <div className="container">
                       <div className="row">
-                          <div className="col-lg-6 mb-3d-5" data-aos="fade-in-left" data-aos-delay={200}>
+                          <div className="col-lg-6 mb-3d-5">
                               <div className="half_column_image overlay">
                                   <img src="assets/images/video_popup.jpg" alt="Video Image" className="img-fluid image-link" />
                                   <div className="video-play-btn"><a data-fancybox href="https://www.youtube.com/watch?v=_sI_Ps7JSEk" className="video-play-link"><i className="fas fa-play-circle" /></a></div>
                               </div>
                           </div>
-                          <div className="col-lg-6" data-aos="fade-in-right" data-aos-delay={400}>
+                          <div className="col-lg-6" data-aos="fade-in-right">
                               <div className="video_popup_content text-white">
                                   <h2 className="sub-title text-white mb-3">Why TRC - <strong className='trc-text-green-500'>?</strong></h2>
                                   <p>Our team comprises seasoned and qualified counselors. Dedicated to providing expert guidance throughout your academic journey. Well-versed in the intricacies of the application process. Comprehensive Support Across All Academic Levels.</p>

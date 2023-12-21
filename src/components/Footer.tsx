@@ -13,7 +13,7 @@ const Footer = () => {
     const [menus, setMenus] = React.useState<PageAttrs[]>([] as PageAttrs[]);
 
     const filterMenus = (menus: PageAttrs[], slug: string = 'home'): PageAttrs[] => {
-        const filteredMenus = menus.filter((menu) => menu.parent === slug);
+        const filteredMenus = menus.filter((menu) => menu.parent?.toString() === slug?.toString());
         return filteredMenus;
     }
 

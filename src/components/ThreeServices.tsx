@@ -7,7 +7,7 @@ const ThreeServices = () => {
                 <div className="services-area">
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-4 mb-xs-5 mt-xs-5" data-aos="fade-in" data-aos-delay={200}>
+                            <div className="col-md-4 mb-xs-5 mt-xs-5">
                                 <div className="single-service trc-bg-green-600 text-center text-white py-5 px-4">
                                     <div className="service-icon">
                                         <img src="assets/images/service_icon_01.png" alt="service one" className="img-fluid" />

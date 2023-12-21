@@ -4,7 +4,7 @@ import React from 'react'
 export default function Slider() {
     return (
         <>
-            <section className="slider-section swiper-container" data-aos="fade-in">
+            <section className="slider-section swiper-container">
                 <div className="swiper-wrapper">
                     <div className="slider-area height-700 swiper-slide overlay" style={{ backgroundImage: 'url(assets/images/slider_bg_2.jpg)' }}>
                         <div className="container">
