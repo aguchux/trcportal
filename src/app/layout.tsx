@@ -17,7 +17,6 @@ interface Props {
     children: React.ReactNode,
     params: {
         slug?: string,
-        parent?: string
     }
 }
 
