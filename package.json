@@ -28,6 +28,7 @@
     "react-hook-form": "^7.49.0",
     "react-quill": "^2.0.0",
     "react-spinners": "^0.13.8",
+    "sharp": "^0.33.1",
     "slugify": "^1.6.6",
     "store": "^2.0.12",
     "sweetalert2": "^11.10.1",
