@@ -11,12 +11,16 @@ import BreadCrumb from '@/components/BreadCrumb'
 
 export const metadata: Metadata = {
     title: 'Home | The Recruitment Consult',
-    description: 'Welcome to The Recruitment Consult',
+    description: 'The Recruitment Consult is a student recruitment agency based in Nigeria, with a mission to help aspiring students pursue their academic dreams in some of the best schools in Europe, America, Canada and Australia.',
+}
+interface Props {
+    children: React.ReactNode,
+    params: {
+        slug?: string,
+        parent?: string
+    }
 }
 
-interface Props {
-    children: React.ReactNode
-}
 function RootLayout({ children }: Props) {
     return (
         <>
@@ -24,7 +28,6 @@ function RootLayout({ children }: Props) {
                 <head>
                     <meta charSet="utf-8" />
                     <base href="/" />
-                    <title>{metadata.title as string}</title>
                     <meta name="description" content={metadata.description as string} />
                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                     <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
