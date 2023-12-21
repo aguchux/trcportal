@@ -17,8 +17,8 @@ const Menu = () => {
     const [menus, setMenus] = React.useState<PageAttrs[]>([] as PageAttrs[]);
     const [selectedMenu, setSelectedMenu] = React.useState<string>('');
 
-    const filterMenus = (menus: PageAttrs[], slug: string = 'home'): PageAttrs[] => {
-        const filteredMenus = menus.filter((menu) => menu.parent?.toString() === slug?.toString());
+    const filterMenus = (menus: PageAttrs[], slug: string): PageAttrs[] => {
+        const filteredMenus = menus.filter((menu) => menu.parent?.toString() == slug);
         return filteredMenus;
     }
 
@@ -55,8 +55,8 @@ const Menu = () => {
                                             </Link>
                                         </li>
 
-                                        {filterMenus(menus).map((menu, index) => {
-                                            const children = filterMenus(menus, menu.slug);
+                                        {filterMenus(menus, 'home').map((menu, index) => {
+                                            const children = filterMenus(menus, menu.slug.toString());
                                             const hasChildren: Boolean = children.length > 0;
                                             return (
                                                 <li key={index} className={`nav-item ${hasChildren ? 'dropdown' : ''}`}>
