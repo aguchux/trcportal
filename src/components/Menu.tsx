@@ -18,7 +18,7 @@ const Menu = () => {
     const [selectedMenu, setSelectedMenu] = React.useState<string>('');
 
     const filterMenus = (menus: PageAttrs[], slug: string): PageAttrs[] => {
-        const filteredMenus = menus.filter((menu) => menu.parent?.toString() == slug);
+        const filteredMenus = menus.filter((menu) => menu.parent?.toString() === slug);
         return filteredMenus;
     }
 
