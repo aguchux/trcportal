@@ -3,9 +3,11 @@
 import { PageAttrs } from '@/models/pages.model';
 import React, { useEffect } from 'react'
 import { MENU_FORMS } from '@/config/forms';
-import ContactUs from '@/components/forms/ContactUs';
-import Testimonies from '@/components/forms/Testimonies';
-import Application from '@/components/forms/Application';
+
+
+import ContactUs from '@/app/components/forms/ContactUs';
+import Testimonies from '@/app/components/forms/Testimonies';
+import Application from '@/app/components/forms/Application';
 
 type Props = {
     params: {

@@ -14,7 +14,6 @@ const RichTextEditor = dynamic(
 )
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
-import { TestimoniesAttrs } from '@/models/testimonies.model'
 
 
 export default function AdminAddTestimonial() {
@@ -22,22 +21,11 @@ export default function AdminAddTestimonial() {
   const [loading, setLoading] = React.useState(false)
   const { push } = useRouter();
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    values: {
-      title: 'Mr',
-      firstName: '',
-      lastName: '',
-      testimony: '',
-      photoUrl: '',
-      videoUrl: '',
-      useVideo: false
-    }
-  });
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   // on Submit
   const onSubmit = async (data: any) => {
     setLoading(true);
-    const slug = toSlug(data.title);
     try {
       const result = await apiFetcher<ResponseData>('/testimonials/create', {
         method: 'POST',
@@ -116,13 +104,13 @@ export default function AdminAddTestimonial() {
 
                 <tr className="trc-cursor-pointer trc-bg-pink-100 hover:trc-bg-pink-300">
                   <td className="trc-border-b trc-p-2">
-                    <input type="text" {...register("photoUrl", { required: true })} className="form-control" placeholder='Photo Url' />
+                    <input type="text" {...register("photoUrl")} className="form-control" placeholder='Photo Url' />
                   </td>
                   <td className="trc-border-b trc-p-2 flex flex-row">
-                    <input type="text" {...register("videoUrl", { required: true })} className="form-control" placeholder='Youtube Url' />
+                    <input type="text" {...register("videoUrl")} className="form-control" placeholder='Youtube Url' />
                   </td>
                   <td className="trc-border-b trc-p-2 trc-grid trc-grid-cols-2">
-                    <input type="checkbox" {...register("useVideo", { required: false })} className="form-control" placeholder='Use Video' />
+                    <input type="checkbox" {...register("useVideo")} className="form-control" placeholder='Use Video' />
                     <span className='trc-text-2xl'>Use Video on Site</span>
                   </td>
                 </tr>

@@ -3,6 +3,7 @@ import { dbCon } from "@/models";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { Testimonies } = await dbCon();
+
     const {
         title,
         firstName,
@@ -13,8 +14,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         useVideo,
     } = req.body;
 
-
     try {
+
         const created = await Testimonies.create({
             title,
             firstName,
@@ -32,6 +33,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         }
         return res.status(200).json({ success: true, data: created });
     } catch (error: any) {
+        console.log(error);
+
         return res.status(500).json({ success: false, message: error.message });
     }
 }

@@ -14,11 +14,12 @@ export interface TestimoniesAttrs {
 }
 
 
+
 const testimoniesSchema = new Schema<TestimoniesAttrs>({
     title: {
         type: String,
-        enum: ["Mr.", "Mrs.", "Miss", "Dr.", "Prof.", "Rev."],
-        default: "Mr.",
+        enum: ["Mr", "Mrs", "Miss", "Dr", "Prof", "Rev"],
+        default: "Mr",
     },
     firstName: {
         type: String,

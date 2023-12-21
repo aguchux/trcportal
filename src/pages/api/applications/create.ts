@@ -15,8 +15,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         notes
     } = req.body;
 
-    console.log(req.body);
-
     try {
         const created = await Application.create({
             firstName,
