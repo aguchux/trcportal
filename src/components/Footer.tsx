@@ -36,37 +36,42 @@ const Footer = () => {
             <footer>
                 <div className="footer-area default_bg">
                     <div className="footer-top trc-py-10">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-lg-6 col-md-6 mb-xs-5">
-                                    <div className="single_widget">
-                                        <div className="address-widget">
-                                            <div className="footer-logo">
-                                                <Link href="/"><Image src={IMAGES.logoFooter} alt='' width={300} className="img-fluid" /></Link>
+                        <div className="container-fluid">
+                            <div className='trc-py-0 trc-px-10'>
+                                <div className="row">
+                                    <div className="col-md-4 mb-xs-5">
+                                        <div className="single_widget">
+                                            <div className="address-widget">
+                                                <div className="footer-logo">
+                                                    <Link href="/"><Image src={IMAGES.logoFooter} alt='' width={300} className="img-fluid" /></Link>
+                                                </div>
+                                                <p className='trc-font-medium'>
+                                                    The Recruitment Consult assists international students with personal statement, application, student visa, and support them in applying for their preferred University and course in UK, CANADA and USA.
+                                                </p>
                                             </div>
-                                            <p className='trc-font-medium'>
-                                                The Recruitment Consult assists international students with personal statement, application, student visa, and support them in applying for their preferred University and course in UK, CANADA and USA. 
-                                            </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="col-lg-3 col-md-6 mb-3d-5">
-                                    <div className="single_widget">
-                                        <h3>Useful Links</h3>
-                                        <div className="widget-list">
-                                            <ul>
-                                                {menus.map((menu, index) => <li key={index}><Link href={`/pages/${menu.slug}`}>{menu.title}</Link></li>)}
-                                            </ul>
+                                    <div className="col-md-2 mb-3d-5">
+                                        <div className="single_widget">
+                                            <h3>Useful Links</h3>
+                                            <div className="widget-list ">
+                                                <ul>
+                                                    {menus.map((menu, index) => <li key={index}><Link href={`/pages/${menu.slug}`}>{menu.title}</Link></li>)}
+                                                </ul>
+                                                <ul>
+                                                    <li><Link href="#">Online Application</Link></li>
+                                                    <li><Link href="#">Client Feedback</Link></li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>                                </div>
-                                <div className="col-lg-3 col-md-6 mb-xs-5">
-                                    <div className="single_widget">
-                                        <h3>Our Services</h3>
-                                        <div className="widget-list">
-                                            <ul>
-                                                <li><Link href="#">Online Application</Link></li>
-                                                <li><Link href="#">Client Feedback</Link></li>
-                                            </ul>
+                                    </div>
+
+                                    <div className="col-md-6 mb-xs-5">
+                                        <div className="single_widget">
+                                            <div className='row gap-1 '>
+                                                <div className='col-md-6 trc-min-h-[200px] rounded-lg  trc-bg-green-200'></div>
+                                                <div className='col-md-6 trc-min-h-[200px] rounded-lg  trc-bg-green-200'></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
