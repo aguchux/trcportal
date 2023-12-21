@@ -15,7 +15,12 @@ const Menu = () => {
     // const {query} = useRouter();
     // const {slug} = query;
     const [menus, setMenus] = React.useState<PageAttrs[]>([] as PageAttrs[]);
-    const [selectedMenu, setSelectedMenu]  = React.useState<string>('');
+    const [selectedMenu, setSelectedMenu] = React.useState<string>('');
+
+    const filterMenus = (menus: PageAttrs[], slug: string = 'home'): PageAttrs[] => {
+        const filteredMenus = menus.filter((menu) => menu.parent === slug);
+        return filteredMenus;
+    }
 
     React.useEffect(() => {
         fetch('/api/pages')
@@ -30,10 +35,10 @@ const Menu = () => {
 
     return (
         <>
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-12">
-                        
+
                         <div className="main-menu default_bg">
                             <nav className="navbar navbar-expand-lg">
                                 <div className="mobile_site_logo d-none">
@@ -45,15 +50,36 @@ const Menu = () => {
                                 <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                                         <li className="nav-item">
-                                            <Link className={`nav-link ${selectedMenu===''?'active': ''}`} href="/">
+                                            <Link className={`nav-link ${selectedMenu === '' ? 'active' : ''}`} href="/">
                                                 Home <span className="sr-only">(current)</span>
-                                            </Link>  
+                                            </Link>
                                         </li>
-                                        {menus.map((menu,index) => (
-                                            <li key={index} className="nav-item">
-                                                <Link className={`nav-link ${menu.slug===selectedMenu?'active': ''}`} href={`/pages/${menu.slug}`}>{menu.title}</Link>
-                                            </li>
-                                        ))}
+
+                                        {filterMenus(menus).map((menu, index) => {
+                                            const children = filterMenus(menus, menu.slug);
+                                            const hasChildren: Boolean = children.length > 0;
+                                            return (
+                                                <li key={index} className={`nav-item ${hasChildren ? 'dropdown' : ''}`}>
+                                                    <Link className={`nav-link ${hasChildren ? 'dropdown-toggle' : ''} ${menu.slug === selectedMenu ? 'active' : ''}`}
+                                                        role={`${hasChildren ? 'button' : 'link'}`}
+                                                        id={`navbarDropdownMenuLink_${menu.slug}`}
+                                                        data-toggle={`${hasChildren ? 'dropdown' : ''}`}
+                                                        aria-haspopup="true"
+                                                        aria-expanded="false"
+                                                        href={`${hasChildren ? '#' : `/pages/${menu.slug}`}`}>{menu.title}
+                                                    </Link>
+                                                    {
+                                                        hasChildren &&
+                                                        <div className="dropdown-menu" aria-labelledby={`navbarDropdownMenuLink_${menu.slug}`}>
+                                                            {children.map((child, index) => (
+                                                                <Link key={index} className="dropdown-item" href={`/pages/${child.slug}`}>{child.title}</Link>
+                                                            ))}
+                                                        </div>
+                                                    }
+                                                </li>
+                                            )
+                                        })}
+
                                         <li className="nav-item">
                                             <Link href="/forms/testimonies" className="nav-link">Testimonies</Link>
                                         </li>

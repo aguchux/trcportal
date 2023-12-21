@@ -3,7 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 export interface PageAttrs {
     _id?: Schema.Types.ObjectId,
     slug: string;
-    parent?: Schema.Types.ObjectId;
+    parent?: string
     title: string;
     pageType: string;
     content: string;
@@ -27,8 +27,9 @@ const pageSchema = new Schema<PageAttrs>({
         required: true,
     },
     parent: {
-        type: Schema.Types.ObjectId,
-        ref: 'Page',
+        type: String,
+        required: true,
+        default: 'home',
     },
     title: {
         type: String,

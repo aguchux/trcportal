@@ -3,7 +3,7 @@ import { dbCon } from "@/models";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { Page } = await dbCon();
-    const { title, pageType, sortNumber, slug, content } = req.body;
+    const { title, parent, pageType, sortNumber, slug, content } = req.body;
     console.log(sortNumber);
     try {
         // count pages with slug=slug
@@ -14,7 +14,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         } else {
             newSlug = slug;
         }
-        const page = await Page.create({ title, pageType, slug: newSlug, content, sortNumber });
+        const page = await Page.create({ title, parent, pageType, slug: newSlug, content, sortNumber });
         if (!page) {
             return res.status(400).json({ success: false, message: "Page not created" });
         }

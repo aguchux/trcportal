@@ -11,6 +11,12 @@ import { PageAttrs } from '@/models/pages.model'
 const Footer = () => {
 
     const [menus, setMenus] = React.useState<PageAttrs[]>([] as PageAttrs[]);
+
+    const filterMenus = (menus: PageAttrs[], slug: string = 'home'): PageAttrs[] => {
+        const filteredMenus = menus.filter((menu) => menu.parent === slug);
+        return filteredMenus;
+    }
+
     React.useEffect(() => {
         if (menus.length > 0) return;
         apiFetcher<ResponseData>('/pages')
@@ -18,7 +24,7 @@ const Footer = () => {
                 const { data } = result
                 if (!data.success) return;
                 const rawMenus = data.data;
-                setMenus(rawMenus)
+                setMenus(filterMenus(rawMenus))
             })
             .catch((err) => {
                 console.log(err)

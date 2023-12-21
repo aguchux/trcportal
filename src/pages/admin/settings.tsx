@@ -9,6 +9,8 @@ import { BeatLoader } from 'react-spinners'
 
 export default function AdminSettings() {
 
+
+  const [copied, setCopied] = React.useState(false);
   const [settings, setSettings] = React.useState<SettingsAttrs[]>([]);
   const [loading, setLoading] = React.useState(true);
 
@@ -16,12 +18,14 @@ export default function AdminSettings() {
   const [currKey, setCurrKey] = React.useState<Schema.Types.ObjectId>('' as unknown as Schema.Types.ObjectId);
 
   React.useEffect(() => {
+    if (copied) return;
     apiFetcher<ResponseData>('/settings')
       .then((result) => {
         setLoading(false)
         const { data } = result
         if (!data.success) return;
         setSettings(data.data);
+        setCopied(true)
       })
       .catch((err) => {
         console.log(err)
@@ -55,11 +59,12 @@ export default function AdminSettings() {
   return (
     <AdminLayout>
       <PageTitleBar title="Dashboard (Settings)" loading={loading} />
-      <div className='trc-grid trc-grid-cols-2 trc-gap-2'>
+      <div className='trc-grid trc-grid-cols-1 trc-gap-0'>
         <div className="trc-container trc-mx-auto">
           <div className="trc-border trc-p-5 trc-bg-gray-300 trc-shadow-md trc-rounded">
+            <div className="row">
             {settings.map((setting, index) => (
-              <form key={index} id={`settings_${index}`} >
+              <form key={index} id={`settings_${index}`} className='col-4 col-md-4' >
                 <input type="hidden" value={setting.keyName} />
                 <table className="trc-min-w-full my-2 trc-text-black trc-cursor-pointer trc-bg-blue-100 hover:trc-bg-blue-200 trc-rounded">
                   <thead className="trc-bg-gray-700 trc-text-white ">
@@ -106,12 +111,11 @@ export default function AdminSettings() {
                 </table>
               </form>
             ))}
+            </div>
+
           </div>
         </div>
 
-        <div className="h-[auto] trc-rounded-lg trc-bg-neutral-300">
-
-        </div>
 
       </div>
     </AdminLayout>

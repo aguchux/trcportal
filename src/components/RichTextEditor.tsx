@@ -2,10 +2,11 @@
 import React from 'react'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { PageAttrs } from '@/models/pages.model';
 
 
 interface RichTextEditorProps {
-    page: PageProps,
+    page: PageAttrs,
     onChageFunction: (event: any, editor: any) => void
 }
 

@@ -8,7 +8,7 @@ function TopBar() {
         <>
         
             <div className="header_top_area my-4">
-                <div className="container">
+                <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-12">
                             <div className="header_top d-flex justify-content-between">

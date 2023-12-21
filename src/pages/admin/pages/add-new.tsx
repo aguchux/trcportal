@@ -14,24 +14,48 @@ const RichTextEditor = dynamic(
 )
 import { useForm } from 'react-hook-form'
 import Swal from 'sweetalert2'
+import { PageAttrs } from '@/models/pages.model'
 
 
 export default function AdminPages() {
 
-  const [page, setPage] = React.useState<PageProps>({
+  const [copied, setCopied] = React.useState(false)
+  const [pages, setPages] = React.useState<PageAttrs[]>([])
+
+  const [page, setPage] = React.useState<PageAttrs>({
     content: '',
-  } as PageProps)
+  } as PageAttrs)
 
   const [loading, setLoading] = React.useState(false)
   const { push } = useRouter();
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     values: {
+      parent: 'home',
       title: '',
       pageType: 'Page',
       sortNumber: 0
     }
   });
+
+
+
+  React.useEffect(() => {
+    if (copied) return;
+    apiFetcher<ResponseData>('/pages/root-pages')
+      .then((result) => {
+        setLoading(false)
+        const { data } = result
+        if (!data.success) return;
+        setPages(data.data)
+        setCopied(true)
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoading(false)
+      })
+  }, [])
+
 
   // on Submit
   const onSubmit = async (data: any) => {
@@ -97,6 +121,7 @@ export default function AdminPages() {
                   <th className="trc-border-b-2 trc-p-2">TITLE</th>
                   <th className="trc-border-b-2 trc-p-2">SORT</th>
                   <th className="trc-border-b-2 trc-p-2">TYPE</th>
+                  <th className="trc-border-b-2 trc-p-2">PARENT</th>
                 </tr>
               </thead>
               <tbody>
@@ -110,16 +135,25 @@ export default function AdminPages() {
                     <input {...register("sortNumber", { required: true })} type="number" className="form-control" placeholder='0' />
                   </td>
 
-                  <td className="trc-border-b trc-p-2 trc-w-[300px]">
+                  <td className="trc-border-b trc-p-2 trc-w-[200px]">
                     <select className="form-control" {...register("pageType", { required: true })}>
                       <option value="Page">Page</option>
                       <option value="Post">Post</option>
                     </select>
                   </td>
+
+
+                  <td className="trc-border-b trc-p-2 trc-w-[300px]">
+                    <select className="form-control" {...register("parent", { required: true })}>
+                      <option value="home">Home</option>
+                      {pages.map((page, index) => (<option key={index} value={page.slug}>{page.title}</option>))}
+                    </select>
+                  </td>
+
                 </tr>
 
                 <tr className="trc-cursor-pointer trc-bg-pink-100 hover:trc-bg-pink-300">
-                  <td colSpan={3} className="trc-border-b trc-p-2">
+                  <td colSpan={4} className="trc-border-b trc-p-2">
                     <RichTextEditor
                       page={page}
                       onChageFunction={editorOnChange}
@@ -127,7 +161,7 @@ export default function AdminPages() {
                   </td>
                 </tr>
                 <tr className="trc-cursor-pointer trc-bg-pink-100 hover:trc-bg-pink-300">
-                  <td colSpan={3} className="trc-border-b trc-p-2">
+                  <td colSpan={4} className="trc-border-b trc-p-2">
                     <button className="btn btn-primary" type='submit'>Create Page</button>
                   </td>
                 </tr>

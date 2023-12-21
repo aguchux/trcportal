@@ -10,6 +10,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import dynamic from 'next/dynamic'
 import {useForm} from 'react-hook-form'
 import Swal from 'sweetalert2'
+import { PageAttrs } from '@/models/pages.model'
         
 const RichTextEditor = dynamic(
   () => import('@/components/RichTextEditor'),
@@ -18,7 +19,10 @@ const RichTextEditor = dynamic(
 
 export default function EditPages() {
 
-    const [page, setPage] = React.useState<PageProps>({} as PageProps)
+    const [copied, setCopied] = React.useState(false)
+    const [pages, setPages] = React.useState<PageAttrs[]>([])
+
+    const [page, setPage] = React.useState<PageAttrs>({} as PageAttrs)
     const [loading, setLoading] = React.useState(false)
 
     const { push, query } = useRouter();
@@ -42,6 +46,7 @@ export default function EditPages() {
     const {register, handleSubmit, formState: {errors}} = useForm({
         values: {
             pageId: pageId,
+            parent: page.parent!,
             title: page.title!,
             slug:   page.slug!,
             pageType: 'Page',
@@ -49,6 +54,24 @@ export default function EditPages() {
             sortNumber: page.sortNumber!
         }
     });
+
+
+    React.useEffect(() => {
+        if (copied) return;
+        apiFetcher<ResponseData>('/pages/root-pages')
+            .then((result) => {
+                setLoading(false)
+                const { data } = result
+                if (!data.success) return;
+                setPages(data.data)
+                setCopied(true)
+            })
+            .catch((err) => {
+                console.log(err)
+                setLoading(false)
+            })
+    }, [])
+
 
 
     const onSubmit = async (data:any) => {
@@ -59,6 +82,7 @@ export default function EditPages() {
                 method: 'POST',
                 data: {
                     pageId: data.pageId,
+                    parent: data.parent,
                     title: data.title,
                     slug:   slug,
                     pageType: data.pageType,
@@ -121,6 +145,8 @@ export default function EditPages() {
                                     <th className="trc-border-b-2 trc-p-2">TITLE</th>
                                     <th className="trc-border-b-2 trc-p-2">SORT</th>
                                     <th className="trc-border-b-2 trc-p-2">TYPE</th>
+                                    <th className="trc-border-b-2 trc-p-2">PARENT</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -134,16 +160,25 @@ export default function EditPages() {
                                         <input {...register("sortNumber", {required:true})} type="number" className="form-control" placeholder='0'/>
                                     </td>
 
-                                    <td className="trc-border-b trc-p-2 trc-w-[300px]">
+                                    <td className="trc-border-b trc-p-2 trc-w-[200px]">
                                         <select className="form-control">
                                             <option value="Page">Page</option>
                                             <option value="Post">Post</option>
                                         </select>
                                     </td>
+
+
+                                    <td className="trc-border-b trc-p-2 trc-w-[300px]">
+                                        <select className="form-control" {...register("parent", { required: true })}>
+                                            <option value="home">Home</option>
+                                            {pages.map((page, index) => (<option key={index} value={page.slug}>{page.title}</option>))}
+                                        </select>
+                                    </td>
+
                                 </tr>
 
                                 <tr className="trc-cursor-pointer trc-bg-pink-100 hover:trc-bg-pink-300" onClick={() => { }}>
-                                    <td colSpan={3} className="trc-border-b trc-p-2">
+                                    <td colSpan={4} className="trc-border-b trc-p-2">
                                         <RichTextEditor  {...register("sortNumber", {required:true})}
                                             page={page} 
                                             onChageFunction={editorOnChange}
@@ -151,7 +186,7 @@ export default function EditPages() {
                                     </td>
                                 </tr>
                                 <tr className="trc-cursor-pointer trc-bg-pink-100 hover:trc-bg-pink-300" onClick={() => { }}>
-                                    <td colSpan={3} className="trc-border-b trc-p-2">
+                                    <td colSpan={4} className="trc-border-b trc-p-2">
                                         <button className="btn btn-primary">Update Page</button>
                                     </td>
                                 </tr>

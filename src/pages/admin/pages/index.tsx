@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 
 export default function AdminPages() {
 
+  const [copied, setCopied] = React.useState(false)
   const [pages, setPages] = React.useState<PageAttrs[]>([])
   const [loading, setLoading] = React.useState(true)
 
@@ -36,6 +37,7 @@ export default function AdminPages() {
               )
               return;
             };
+            setCopied(false)
             Swal.fire(
               'Deleted!',
               'Your page has been deleted.',
@@ -59,18 +61,20 @@ export default function AdminPages() {
   }
 
   React.useEffect(() => {
+    if (copied) return;
     apiFetcher<ResponseData>('/pages')
       .then((result) => {
         setLoading(false)
         const { data } = result
         if (!data.success) return;
         setPages(data.data)
+        setCopied(true)
       })
       .catch((err) => {
         console.log(err)
         setLoading(false)
       })
-  }, [loading])
+  }, [swalDelete])
 
 
   return (
