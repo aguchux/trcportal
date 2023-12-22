@@ -23,7 +23,7 @@ interface Props {
 
 
 export const getSettings = async () => {
-    const response = await fetch(`${process.env.}/settings`);
+    const response = await fetch(`${process.env.NEXT_API_URI}/settings`);
     const result = await response.json();
     const data = result.data;
     return data as SettingsAttrs[];
