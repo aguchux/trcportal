@@ -8,6 +8,7 @@ import Menu from '@/components/Menu'
 import SearchModal from '@/components/SearchModal'
 import Footer from '@/components/Footer'
 import BreadCrumb from '@/components/BreadCrumb'
+import { SettingsAttrs } from '@/models/settings.model'
 
 export const metadata: Metadata = {
     title: 'Home | The Recruitment Consult',
@@ -20,7 +21,18 @@ interface Props {
     }
 }
 
-function RootLayout({ children }: Props) {
+
+export const getSettings = async () => {
+    const response = await fetch(`${process.env.NEXT_API_URI}/settings`);
+    const result = await response.json();
+    const data = result.data;
+    return data as SettingsAttrs[];
+}
+
+
+async function RootLayout({ children }: Props) {
+    const settings = await getSettings();
+    const getByKeyName = (keyName: string) => settings.find((item) => item.keyName === keyName)?.keyValue;
     return (
         <>
             <html lang="en">
@@ -60,7 +72,7 @@ function RootLayout({ children }: Props) {
                 <body>
                     <header>
                         <div>
-                            <TopBar />
+                            <TopBar settings={settings} />
                             <div className="main-menu-area bg_dark_mobile">
                                 <Menu />
                                 <BreadCrumb />
@@ -69,7 +81,7 @@ function RootLayout({ children }: Props) {
                         </div>
                     </header>
                     {children}
-                    <Footer />
+                    <Footer settings={settings} />
                     <Script src="assets/js/jquery-3.4.0.min.js" strategy='beforeInteractive' />
                     <Script src="assets/js/popper.min.js" strategy='lazyOnload' />
                     <Script src="assets/js/jquery.easing.min.js" strategy='lazyOnload' />
