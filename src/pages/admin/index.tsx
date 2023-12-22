@@ -1,6 +1,5 @@
 import React from "react";
 import AdminLayout from "@/components/layouts/AdminLayout";
-import { MetricsAttrs } from "@/models/metrics.model";
 import { apiFetcher } from "@/axios";
 import PageTitleBar from "@/components/admins/PageTitleBar";
 import { ContactAttrs } from "@/models/contacts.model";
@@ -10,10 +9,8 @@ import { ToDate } from "@/utils";
 
 export default function Admin() {
 
-
   const [contacts, setContacts] = React.useState<ContactAttrs[]>([])
   const [loading, setLoading] = React.useState(true)
-
 
   React.useEffect(() => {
     apiFetcher<ResponseData>('/contacts')
