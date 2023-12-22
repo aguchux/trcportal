@@ -12,12 +12,13 @@ const NewsWidget = () => {
                         <a href="#"><img className="img-fluid" src="assets/images/blog_01.jpg" alt="blog" /></a>
                         </div> */}
                         <hr/>
-                        <div className="latest-content">
+                        
+                        {/* <div className="latest-content">
                             <h6><Link href="#">Building Diverse Design Was Teams Innovation.</Link></h6>
                             <div className="latest-meta">
                                 <span>05 Jan 2019</span>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { IMAGES } from '@/config/images'
 const HomeLatestInformation = () => {
     return (
         <>
@@ -11,7 +11,9 @@ const HomeLatestInformation = () => {
                             <div className="col-lg-6" >
                                 <div className="big-blog-area border bg-white">
                                     <div className="blog-thumb">
-                                        <a href="#"><img src="assets/images/big_blog.png" alt="big blog" className="img-fluid" /></a>
+                                        <a href="#">
+                                            <img src="assets/images/big_blog.png" alt="big blog" className="img-fluid" />
+                                        </a>
                                     </div>
                                     <div className="blog-content px-4 pb-4">
                                         <div className="blog-text">
