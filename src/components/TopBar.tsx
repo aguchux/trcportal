@@ -13,7 +13,7 @@ function TopBar() {
                         <div className="col-md-12">
                             <div className="header_top d-flex justify-content-between">
                                 <div className="site_logo trc-mb-[-10px] p-0">
-                                    <Link href="/"><Image src={IMAGES.logo} width={250} alt="logo" className="img-fluid trc-m-0 trc-p-0" /></Link>
+                                    <Link href="/"><Image src={IMAGES.logo} width={180} alt="logo" className="img-fluid trc-m-0 trc-p-0" /></Link>
                                 </div>
                                 <div className="site_info d-flex justify-content-between">
                                     <div className="single_info">
