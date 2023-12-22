@@ -10,7 +10,7 @@ const HomeLatestInformation = () => {
                         <div className="row">
                             <div className="col-lg-6" >
                                 <div className="big-blog-area border bg-white">
-                                    <div className="blog-thumb">
+                                    <div className="blog-thumb trc-pr-4">
                                         <a href="#">
                                             <img src="assets/images/big_blog.png" alt="big blog" className="img-fluid" />
                                         </a>
