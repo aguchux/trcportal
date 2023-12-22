@@ -32,7 +32,6 @@ export const getSettings = async () => {
 
 async function RootLayout({ children }: Props) {
     const settings = await getSettings();
-    const getByKeyName = (keyName: string) => settings.find((item) => item.keyName === keyName)?.keyValue;
     return (
         <>
             <html lang="en">
