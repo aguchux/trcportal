@@ -4,12 +4,12 @@ import { useAuth } from '@/hooks';
 import { SettingsAttrs } from '@/models/settings.model';
 
 type Props = {
-    settings: SettingsAttrs[]
+    settings?: SettingsAttrs[]
 }
 
 const BaseFooter = ({ settings }: Props) => {
     const {loggedIn, busy} = useAuth();
-    const getByKeyName = (keyName: string) => settings.find((item) => item.keyName === keyName)?.keyValue;
+    const getByKeyName = (keyName: string) => settings?.find((item) => item.keyName === keyName)?.keyValue;
    return (
         <>
             <div className="footer-bottom-wrapper border-top py-3">

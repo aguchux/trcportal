@@ -5,10 +5,10 @@ import Link from 'next/link'
 import { SettingsAttrs } from '@/models/settings.model'
 
 type Props = {
-    settings: SettingsAttrs[]
+    settings?: SettingsAttrs[]
 }
 async function TopBar({ settings }: Props) {
-    const getByKeyName = (keyName: string) => settings.find((item) => item.keyName === keyName)?.keyValue;
+    const getByKeyName = (keyName: string) => settings?.find((item) => item.keyName === keyName)?.keyValue;
     return (
         <>
         

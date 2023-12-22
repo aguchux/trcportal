@@ -10,10 +10,10 @@ import { PageAttrs } from '@/models/pages.model'
 import { SettingsAttrs } from '@/models/settings.model'
 
 type Props = {
-    settings: SettingsAttrs[]
+    settings?: SettingsAttrs[]
 }
 const Footer = ({ settings }: Props) => {
-    const getByKeyName = (keyName: string) => settings.find((item) => item.keyName === keyName)?.keyValue;
+    const getByKeyName = (keyName: string) => settings?.find((item) => item.keyName === keyName)?.keyValue;
     const [menus, setMenus] = React.useState<PageAttrs[]>([] as PageAttrs[]);
 
     const filterMenus = (menus: PageAttrs[]): PageAttrs[] => {
