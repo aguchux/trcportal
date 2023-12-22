@@ -2,9 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { dbCon } from "@/models";
 import { generateJwt } from "@/jwt";
 import { setCookie } from 'cookies-next';
-import cookieHelper
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
+
     const { Admin } = await dbCon();
     const { email, password } = req.body;
     try {
