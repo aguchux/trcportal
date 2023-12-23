@@ -8,9 +8,12 @@ export const busyAtom = atom<boolean>(false);
 export const loggedInAtom = atomWithStorage<boolean>('loggedIn', false);
 export const adminAtom = atomWithStorage<AdminAttrs>('admin', {} as AdminAttrs);
 
-// jotaiStore.sub(busyAtom, () => {
-//     // Add your code here
-// });
+
+
+jotaiStore.sub(busyAtom, () => {
+    // Add your code here
+
+});
 
 // jotaiStore.sub(loggedInAtom, () => {
 //     // Add your code here
