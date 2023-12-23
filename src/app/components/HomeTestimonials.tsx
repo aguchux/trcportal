@@ -1,15 +1,15 @@
 import { TestimoniesAttrs } from '@/models/testimonies.model'
 import React from 'react'
 
-const HomeTestimonials = async () => {
-    const apiUri = process.env.NEXT_URI || 'http://localhost:3000';
-    const output = await fetch(`${apiUri}/api/testimonials`, {
-        next: {
-            revalidate: 10
-        }
-    })
-    const result = await output.json()
-    const testimonies = result.data
+const HomeTestimonials = () => {
+    // const apiUri = process.env.NEXT_URI || 'http://localhost:3000';
+    // const output = await fetch(`${apiUri}/api/testimonials`, {
+    //     next: {
+    //         revalidate: 10
+    //     }
+    // })
+    // const result = await output.json()
+    const testimonies: TestimoniesAttrs[] = []
     return (
         <>
             <section className="testimonials-section trc-my-8">
