@@ -7,9 +7,13 @@ import { IMAGES } from '@/config/images'
 import BaseFooter from './BaseFooter'
 import { apiFetcher } from '@/axios'
 import { PageAttrs } from '@/models/pages.model'
+import { SettingsAttrs } from '@/models/settings.model'
 
-const Footer = () => {
-
+type Props = {
+    settings?: SettingsAttrs[]
+}
+const Footer = ({ settings }: Props) => {
+    const getByKeyName = (keyName: string) => settings?.find((item) => item.keyName === keyName)?.keyValue;
     const [menus, setMenus] = React.useState<PageAttrs[]>([] as PageAttrs[]);
 
     const filterMenus = (menus: PageAttrs[]): PageAttrs[] => {
@@ -46,7 +50,7 @@ const Footer = () => {
                                                     <Link href="/"><Image src={IMAGES.logoFooter} alt='' width={300} className="img-fluid" /></Link>
                                                 </div>
                                                 <p className='trc-font-medium'>
-                                                    The Recruitment Consult assists international students with personal statement, application, student visa, and support them in applying for their preferred University and course in UK, CANADA and USA.
+                                                    {getByKeyName('siteDescription')}
                                                 </p>
                                             </div>
                                         </div>
@@ -82,8 +86,7 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-
-                    <BaseFooter />
+                    <BaseFooter settings={settings} />
                 </div>
                 <div className="scroll-top">
                     <div className="scroll-icon">

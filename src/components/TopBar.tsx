@@ -2,8 +2,13 @@ import React from 'react'
 import { IMAGES } from '@/config/images'
 import Image from 'next/image'
 import Link from 'next/link'
+import { SettingsAttrs } from '@/models/settings.model'
 
-function TopBar() {
+type Props = {
+    settings?: SettingsAttrs[]
+}
+async function TopBar({ settings }: Props) {
+    const getByKeyName = (keyName: string) => settings?.find((item) => item.keyName === keyName)?.keyValue;
     return (
         <>
         
@@ -20,14 +25,14 @@ function TopBar() {
                                         <img src="assets/images/location.png" alt="Location" className="img-fluid" />
                                         <div className="info_data">
                                             <h6>Office Locations:</h6>
-                                            <p>83 Ziks Avenue, Uwani, Enugu.</p>
+                                            <p>{getByKeyName('siteAddress')}</p>
                                         </div>
                                     </div>
                                     <div className="single_info">
                                         <img src="assets/images/phone.png" alt="Location" className="img-fluid" />
                                         <div className="info_data">
                                             <h6>Phone/Support</h6>
-                                            <p>234 815 811 6094</p>
+                                            <p>{getByKeyName('sitePhone')}</p>
                                         </div>
                                     </div>
                                     <div className="single_info">
