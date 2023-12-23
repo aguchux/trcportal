@@ -1,8 +1,8 @@
 {
   "extends": [
-    "next/core-web-vitals", 
-    "next",
-    // "next/typescript-eslint", 
-    "prettier","next/babel"
+    "next/core-web-vitals"
+    // "next",
+    // // "next/typescript-eslint", 
+    // "prettier","next/babel"
   ]
 }
