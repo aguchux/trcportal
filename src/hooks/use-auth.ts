@@ -73,6 +73,10 @@ export const useAuth = () => {
     }
 
     useEffect(() => {
+        if (!token) {
+            setLoggedIn(false)
+            return;
+        };
         apiFetcher<ResponseData>('/info?token=' + token)
             .then((response) => {
                 const { data } = response;
