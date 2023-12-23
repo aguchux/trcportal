@@ -9,13 +9,8 @@ import { apiFetcher } from '@/axios'
 import { PageAttrs } from '@/models/pages.model'
 import { SettingsAttrs } from '@/models/settings.model'
 
-type Props = {
-    settings?: SettingsAttrs[]
-}
-const Footer = ({ settings }: Props) => {
-    const getByKeyName = (keyName: string) => settings?.find((item) => item.keyName === keyName)?.keyValue;
+const Footer = () => {
     const [menus, setMenus] = React.useState<PageAttrs[]>([] as PageAttrs[]);
-
     const filterMenus = (menus: PageAttrs[]): PageAttrs[] => {
         const filteredMenus = menus.filter((menu) => menu.parent?.toString() === 'home');
         return filteredMenus;
@@ -50,7 +45,7 @@ const Footer = ({ settings }: Props) => {
                                                     <Link href="/"><Image src={IMAGES.logoFooter} alt='' width={300} className="img-fluid" /></Link>
                                                 </div>
                                                 <p className='trc-font-medium'>
-                                                    {getByKeyName('siteDescription')}
+                                                    The Recruitment Consult assists international students with personal statement, application, student visa, and support them in applying for their preferred University and course in UK, CANADA and USA.
                                                 </p>
                                             </div>
                                         </div>
@@ -86,7 +81,7 @@ const Footer = ({ settings }: Props) => {
                             </div>
                         </div>
                     </div>
-                    <BaseFooter settings={settings} />
+                    <BaseFooter />
                 </div>
                 <div className="scroll-top">
                     <div className="scroll-icon">

@@ -2,7 +2,6 @@
 
 import { apiFetcher } from '@/axios';
 import { PageAttrs } from '@/models/pages.model';
-import { useRouter } from 'next/router';
 import React from 'react'
 import { MENU_FORMS } from '@/config/forms';
 import { useParams, usePathname } from 'next/navigation';

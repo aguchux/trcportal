@@ -4,19 +4,15 @@ import { IMAGES } from '@/config/images'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useAuth } from '@/hooks'
-import { ToDate } from '@/utils'
 
 function AdminTopBar() {
-
     const { admin, busy, authLogout } = useAuth()
-
     const hanldeLogout = async (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
         authLogout().then((res) => {
             if (res) window.location.href = '/auth'
         })
     }
-
     return (
         <>
             <div className="header_top_area my-4 trc-clear-both">
