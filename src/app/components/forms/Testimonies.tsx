@@ -3,15 +3,16 @@ import { TestimoniesAttrs } from '@/models/testimonies.model';
 
 type Props = {}
 
-const Testimonies = async (props: Props) => {
-    const apiUri = process.env.NEXT_URI || 'http://localhost:3000';
-    const response = await fetch(`${apiUri}/api/testimonials`, {
-        next: {
-            revalidate: 10
-        }
-    });
-    const output = await response.json();
-    const result = output.data as TestimoniesAttrs[];
+const Testimonies = (props: Props) => {
+    // const apiUri = process.env.NEXT_URI || 'http://localhost:3000';
+    // const response = await fetch(`${apiUri}/api/testimonials`, {
+    //     next: {
+    //         revalidate: 10
+    //     }
+    // });
+    // const output = await response.json();
+    // const result:TestimoniesAttrs[] = output.data as TestimoniesAttrs[];
+    const result: TestimoniesAttrs[] = []
     return (
         <>
             <div className="page-wrapper trc-my-10">
