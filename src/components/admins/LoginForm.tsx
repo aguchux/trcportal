@@ -7,8 +7,6 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { adminAtom, loggedInAtom } from '@/store';
 import { useAtom } from 'jotai';
 
-
-
 const LoginForm = () => {
 
   const [_, setAdmin] = useAtom(adminAtom);
