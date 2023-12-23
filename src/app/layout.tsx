@@ -30,8 +30,8 @@ export const getSettings = async () => {
 }
 
 
-async function RootLayout({ children }: Props) {
-    const settings = await getSettings();
+function RootLayout({ children }: Props) {
+    // const settings = await getSettings();
     return (
         <>
             <html lang="en">
@@ -80,7 +80,7 @@ async function RootLayout({ children }: Props) {
                         </div>
                     </header>
                     {children}
-                    <Footer settings={settings} />
+                    <Footer />
                     <Script src="assets/js/jquery-3.4.0.min.js" strategy='beforeInteractive' />
                     <Script src="assets/js/popper.min.js" strategy='lazyOnload' />
                     <Script src="assets/js/jquery.easing.min.js" strategy='lazyOnload' />
