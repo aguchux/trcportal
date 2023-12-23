@@ -71,7 +71,7 @@ async function RootLayout({ children }: Props) {
                 <body>
                     <header>
                         <div>
-                            <TopBar settings={settings} />
+                            <TopBar />
                             <div className="main-menu-area bg_dark_mobile">
                                 <Menu />
                                 <BreadCrumb />
