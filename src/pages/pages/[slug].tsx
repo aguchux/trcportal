@@ -1,6 +1,6 @@
 import NewsWidget from '@/components/NewsWidget';
 import { PageAttrs } from '@/models/pages.model';
-import React from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { ToDate, siteInfo } from '@/utils';
 import { SettingsAttrs } from '@/models/settings.model';
 import { useRouter } from 'next/router';
@@ -23,7 +23,7 @@ type Props = {
 const PageInfo = ({ settings, menus }: Props) => {
     const { query } = useRouter();
     const { slug } = query;
-    const thisPageInfo = getPageInfo(menus, slug as string);
+    const thisPageInfo = useMemo(() => getPageInfo(menus, slug as string), [menus, slug]);
     return (
         <RootLayout>
             <Head>
