@@ -4,7 +4,7 @@ import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import jotaiStore from "@/store";
 import { Provider } from "jotai";
-import { menusAtom, settingsAtom } from "@/store";
+import { menusAtom, settingsAtom, testimoniesAtom } from "@/store";
 import { useAtom } from "jotai";
 import { useRouter } from "next/router";
 
@@ -18,8 +18,9 @@ export default function App({
   const { query } = useRouter();
   const [menus, setMenus] = useAtom(menusAtom);
   const [settings, setSettings] = useAtom(settingsAtom);
+  const [testimonies, setTestimonies] = useAtom(testimoniesAtom);
 
-  const slug = query.slug as string;
+  const slug = query.slug as string;  
 
   React.useEffect(() => {
     fetch('/api/pages')
@@ -30,6 +31,14 @@ export default function App({
       })
   }, [setMenus])
 
+  React.useEffect(() => {
+    fetch('/api/testimonies')
+      .then((res) => res.json())
+      .then((data) => {
+        const rawTestimonies = data.data || [];
+        setTestimonies(rawTestimonies)
+      })
+  }, [setTestimonies])
 
   React.useEffect(() => {
     fetch('/api/settings')
@@ -44,7 +53,7 @@ export default function App({
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={jotaiStore}>
-        <Component {...pageProps} settings={settings} menus={menus} />
+        <Component {...pageProps} settings={settings} menus={menus} testimonies={testimonies} />
       </Provider>
       {/* <ReactQueryDevtools initialIsOpen={true} /> */}
     </QueryClientProvider>

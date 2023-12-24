@@ -1,19 +1,21 @@
 import React from 'react'
 import RootLayout from '@/components/layouts/RootLayout'
 import Slider from '@/components/Slider'
-type Props = {
-    settings: any
-}
+import ThreeServices from '@/components/ThreeServices'
+import HomeWelcome from '@/components/HomeWelcome'
+import HomeLatestInformation from '@/components/HomeLatestInformation'
+import HomePopupVideo from '@/components/HomePopupVideo'
+import HomeTestimonials from '@/components/HomeTestimonials'
 
-const HomePage = ({ settings }: Props) => {
+const HomePage = () => {
     return (
         <RootLayout>
             <Slider />
-            {/* <ThreeServices />
+            <ThreeServices />
             <HomeWelcome />
             <HomeLatestInformation />
             <HomePopupVideo />
-            <HomeTestimonials /> */}
+            <HomeTestimonials />
         </RootLayout>
     )
 }
