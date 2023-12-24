@@ -4,6 +4,7 @@ const config: Config = {
   prefix: 'trc-',
   corePlugins: {
     container: false,
+    preflight: false,
   },
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
