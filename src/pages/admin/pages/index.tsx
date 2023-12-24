@@ -91,24 +91,24 @@ export default function AdminPages() {
           <table className="trc-w-full trc-text-black">
             <thead className="trc-bg-gray-700 trc-rounded trc-text-white">
               <tr>
-                <th className="trc-border-b-2 trc-p-2">TITLE</th>
-                <th className="trc-border-b-2 trc-p-2">SLUG</th>
-                <th className="trc-border-b-2 trc-p-2">TYPE</th>
-                <th className="trc-border-b-2 trc-p-2">SORT</th>
-                <th className="trc-border-b-2 trc-p-2">UPDATED</th>
-                <th className="trc-border-b-2 trc-p-2">-</th>
+                <th className="">TITLE</th>
+                <th className="">SLUG</th>
+                <th className="">TYPE</th>
+                <th className="">SORT</th>
+                <th className="">UPDATED</th>
+                <th className="">-</th>
               </tr>
             </thead>
             <tbody>
               {/* Table rows go here */}
               {pages.map((page, index) => (
                 <tr key={index} className="trc-cursor-pointer hover:trc-bg-pink-300" onClick={() => { }}>
-                  <td className="trc-border-b trc-p-2">{page.title}</td>
-                  <td className="trc-border-b trc-p-2">{page.slug}</td>
-                  <td className="trc-border-b trc-p-2">{page.pageType}</td>
-                  <td className="trc-border-b trc-p-2">{page.sortNumber}</td>
-                  <td className="trc-border-b trc-p-2">{ToDate(page.updatedAt)}</td>
-                  <td className="trc-border-b trc-p-2 trc-flex">
+                  <td className="">{page.title}</td>
+                  <td className="">{page.slug}</td>
+                  <td className="">{page.pageType}</td>
+                  <td className="">{page.sortNumber}</td>
+                  <td className="">{ToDate(page.updatedAt)}</td>
+                  <td className=" trc-flex">
                     <Link href={`/admin/pages/${page._id}/edit-page`} className="btn btn-primary btn-sm trc-rounded mx-1 my-0 py-0">Edit</Link>
                     <Link href={`#`} onClick={(e) => swalDelete(e, page.slug)} className="btn btn-danger btn-sm trc-rounded mx-1 my-0 py-0">Delete</Link>
                   </td>
