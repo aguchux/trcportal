@@ -87,7 +87,7 @@ export default function AdminPages() {
             <Link href='/admin/pages/add-new' className="btn btn-primary trc-rounded">Add New</Link>
           </div>
           <hr className="trc-my-5" />
-          <table className="trc-min-w-full trc-text-black">
+          <table className="trc-w-full trc-text-black">
             <thead className="trc-bg-gray-700 trc-rounded trc-text-white">
               <tr>
                 <th className="trc-border-b-2 trc-p-2">TITLE</th>
@@ -107,7 +107,7 @@ export default function AdminPages() {
                   <td className="trc-border-b trc-p-2">{page.pageType}</td>
                   <td className="trc-border-b trc-p-2">{page.sortNumber}</td>
                   <td className="trc-border-b trc-p-2">{page.updatedAt}</td>
-                  <td className="trc-border-b trc-p-2 trc-w-[100px] trc-flex">
+                  <td className="trc-border-b trc-p-2 trc-flex">
                     <Link href={`/admin/pages/${page._id}/edit-page`} className="btn btn-primary btn-sm trc-rounded mx-1 my-0 py-0">Edit</Link>
                     <Link href={`#`} onClick={(e) => swalDelete(e, page.slug)} className="btn btn-danger btn-sm trc-rounded mx-1 my-0 py-0">Delete</Link>
                   </td>
