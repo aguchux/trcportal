@@ -5,31 +5,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { IMAGES } from '@/config/images'
 import BaseFooter from './BaseFooter'
-import { apiFetcher } from '@/axios'
-import { PageAttrs } from '@/models/pages.model'
-import { SettingsAttrs } from '@/models/settings.model'
+import { settingsAtom, menusAtom } from '@/store'
+import { useAtom } from 'jotai'
+import { siteInfo, filterMenus } from '@/utils'
 
 const Footer = () => {
-    const [menus, setMenus] = React.useState<PageAttrs[]>([] as PageAttrs[]);
-    const filterMenus = (menus: PageAttrs[]): PageAttrs[] => {
-        const filteredMenus = menus.filter((menu) => menu.parent?.toString() === 'home');
-        return filteredMenus;
-    }
-
-    React.useEffect(() => {
-        if (menus.length > 0) return;
-        apiFetcher<ResponseData>('/pages')
-            .then((result) => {
-                const { data } = result
-                if (!data.success) return;
-                const rawMenus = data.data;
-                setMenus(filterMenus(rawMenus))
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }, [menus])
-
+    const [settings] = useAtom(settingsAtom);
+    const [menus] = useAtom(menusAtom);
     return (
         <>
             <footer>
@@ -45,7 +27,7 @@ const Footer = () => {
                                                     <Link href="/"><Image src={IMAGES.logoFooter} alt='' width={300} className="img-fluid" /></Link>
                                                 </div>
                                                 <p className='trc-font-medium'>
-                                                    The Recruitment Consult assists international students with personal statement, application, student visa, and support them in applying for their preferred University and course in UK, CANADA and USA.
+                                                    {siteInfo(settings, "siteAbout")}
                                                 </p>
                                             </div>
                                         </div>
@@ -55,7 +37,7 @@ const Footer = () => {
                                             <h3>Useful Links</h3>
                                             <div className="widget-list ">
                                                 <ul>
-                                                    {menus.map((menu, index) => <li key={index}><Link href={`/pages/${menu.slug}`}>{menu.title}</Link></li>)}
+                                                    {filterMenus(menus, "home").map((menu, index) => <li key={index}><Link href={`/pages/${menu.slug}`}>{menu.title}</Link></li>)}
                                                 </ul>
                                                 <ul>
                                                     <li><Link href="#">Online Application</Link></li>

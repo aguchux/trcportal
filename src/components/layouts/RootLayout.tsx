@@ -1,4 +1,3 @@
-import Script from 'next/script'
 import React from 'react'
 import Head from 'next/head'
 import { Metadata } from 'next'
@@ -7,12 +6,6 @@ import Menu from '../Menu'
 import SearchModal from '../SearchModal'
 import Footer from '../Footer'
 import BreadCrumb from '../BreadCrumb'
-
-export const metadata: Metadata = {
-    title: 'Home | The Recruitment Consult',
-    description: 'Welcome to The Recruitment Consult',
-}
-
 
 interface Props {
     children: React.ReactNode
@@ -23,8 +16,8 @@ function RootLayout({ children }: Props) {
             <Head>
                 <meta charSet="utf-8" />
                 <base href="/" />
-                <title>{metadata.title as string}</title>
-                <meta name="description" content={metadata.description as string} />
+                <title>{''}</title>
+                <meta name="description" content={''} />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
                 
@@ -44,16 +37,7 @@ function RootLayout({ children }: Props) {
                 <link rel="manifest" href="icons/manifest.json"/>
                 <meta name="msapplication-TileColor" content="#ffffff"/>
                 <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png"/>
-                <meta name="theme-color" content="#ffffff"/>
-
-                <link rel="icon" type="image/png" href="assets/images/favicon.png" />
-                <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-                <link rel="stylesheet" href="/assets/css/owl.carousel.min.css" />
-                <link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
-                <link rel="stylesheet" href="/assets/css/aos.css" />
-                <link rel="stylesheet" href="/assets/css/swiper.min.css" />
-                <link rel="stylesheet" href="/assets/css/jquery.fancybox.min.css" />
-                <link rel="stylesheet" href="/style.css" />
+                <meta name="theme-color" content="#ffffff" />
             </Head>
             <header>
                 <div>
@@ -67,19 +51,7 @@ function RootLayout({ children }: Props) {
             </header>
             {children}
             <Footer />
-            <Script src="assets/js/jquery-3.4.0.min.js" strategy='beforeInteractive' />
-            <Script src="assets/js/popper.min.js" strategy='lazyOnload' />
-            <Script src="assets/js/jquery.easing.min.js" strategy='lazyOnload' />
-            <Script src="assets/js/bootstrap.min.js" strategy='lazyOnload' />
-            <Script src="assets/js/aos.js" strategy='lazyOnload' />
-            <Script src="assets/js/owl.carousel.min.js" strategy='beforeInteractive' />
-            <Script src="assets/js/swiper.min.js" strategy='beforeInteractive' />
-            <Script src="assets/js/jquery.fancybox.min.js" strategy='lazyOnload' />
-            <Script src="assets/js/jquery.waypoints.min.js" strategy='lazyOnload' />
-            <Script src="assets/js/jquery.counterup.min.js" strategy='lazyOnload' />
-            <Script src="assets/js/jquery.matchHeight-min.js" strategy='lazyOnload' />
-            <Script src="assets/js/bootnavbar.js" strategy='lazyOnload' />
-            <Script src="assets/js/main.js" strategy='lazyOnload' />
+
         </>
     )
 }

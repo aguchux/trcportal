@@ -8,4 +8,6 @@ export const IMAGES = {
     blog_01: require('@assets/images/blog_01.png'),
     blog_02: require('@assets/images/blog_02.png'),
     blog_03: require('@assets/images/blog_03.png'),
+    location: require('@assets/images/location.png'),
+    phone: require('@assets/images/phone.png'),
 }

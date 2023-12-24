@@ -4,41 +4,25 @@ import React from 'react'
 import { IMAGES } from '@/config/images'
 import Image from 'next/image'
 import Link from 'next/link'
-import { PageAttrs } from '@/models/pages.model'
 import { useParams } from 'next/navigation'
+import { menusAtom } from '@/store'
+import { useAtom } from 'jotai'
+import { filterMenus } from '@/utils'
 
 const Menu = () => {
-
     const params = useParams<{ slug: string }>();
     const slug = params?.slug;
-
-    // const {query} = useRouter();
-    // const {slug} = query;
-    const [menus, setMenus] = React.useState<PageAttrs[]>([] as PageAttrs[]);
+    const [menus] = useAtom(menusAtom);
     const [selectedMenu, setSelectedMenu] = React.useState<string>('');
-
-    const filterMenus = (menus: PageAttrs[], slug: string): PageAttrs[] => {
-        const filteredMenus = menus.filter((menu) => menu.parent?.toString() === slug);
-        return filteredMenus;
-    }
-
     React.useEffect(() => {
-        fetch('/api/pages')
-            .then((res) => res.json())
-            .then((data) => {
-                const rawMenus = data.data || [];
-                setMenus(rawMenus)
-                if (!slug) return;
-                setSelectedMenu(slug as string);
-            })
+        if (!slug) return;
+        setSelectedMenu(slug as string);
     }, [slug])
-
     return (
         <>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-12">
-
                         <div className="main-menu default_bg">
                             <nav className="navbar navbar-expand-lg">
                                 <div className="mobile_site_logo d-none">

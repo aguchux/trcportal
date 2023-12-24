@@ -1,6 +1,14 @@
-/* @tailwind base; */
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import '../../public/assets/css/bootstrap.min.css';
+@import '../../public/assets/css/owl.carousel.min.css';
+@import '../../public/assets/css/font-awesome.min.css';
+@import '../../public/assets/css/aos.css';
+@import '../../public/assets/css/swiper.min.css';
+@import '../../public/assets/css/jquery.fancybox.min.css';
+@import '../../public/style.css';
 
 .nav-item .nav-link.active{
     color: #fff;

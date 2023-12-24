@@ -2,11 +2,13 @@ import React from 'react'
 import { IMAGES } from '@/config/images'
 import Image from 'next/image'
 import Link from 'next/link'
-
-async function TopBar() {
+import { settingsAtom } from '@/store'
+import { useAtom } from 'jotai'
+import { siteInfo } from '@/utils'
+const TopBar = () => {
+    const [settings] = useAtom(settingsAtom);
     return (
         <>
-        
             <div className="header_top_area my-4">
                 <div className="container-fluid">
                     <div className="row">
@@ -17,17 +19,17 @@ async function TopBar() {
                                 </div>
                                 <div className="site_info d-flex justify-content-between">
                                     <div className="single_info">
-                                        <img src="assets/images/location.png" alt="Location" className="img-fluid" />
+                                        <Image src={IMAGES.location} height={60} alt="Location" className="img-fluid" />
                                         <div className="info_data">
                                             <h6>Office Locations:</h6>
-                                            <p>83 Ziks Avenue, Uwani, Enugu State, NG.</p>
+                                            <p>{siteInfo(settings, "siteAddress")}</p>
                                         </div>
                                     </div>
                                     <div className="single_info">
-                                        <img src="assets/images/phone.png" alt="Location" className="img-fluid" />
+                                        <Image src={IMAGES.phone} height={50} alt="Location" className="img-fluid" />
                                         <div className="info_data">
                                             <h6>Phone/Support</h6>
-                                            <p>234 815 811 6094</p>
+                                            <p>{siteInfo(settings, "sitePhone")}</p>
                                         </div>
                                     </div>
                                     <div className="single_info">
