@@ -32,7 +32,7 @@ export default function App({
   }, [setMenus])
 
   React.useEffect(() => {
-    fetch('/api/testimonies')
+    fetch('/api/testimonials')
       .then((res) => res.json())
       .then((data) => {
         const rawTestimonies = data.data || [];

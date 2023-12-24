@@ -26,3 +26,7 @@ type PageProps = {
     content: string,
     sortNumber: number
 }
+
+interface CKProps {
+    htmlContent: string;
+}

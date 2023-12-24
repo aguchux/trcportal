@@ -16,11 +16,8 @@ function RootLayout({ children }: Props) {
             <Head>
                 <meta charSet="utf-8" />
                 <base href="/" />
-                <title>{''}</title>
-                <meta name="description" content={''} />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
-                
+                <meta httpEquiv="X-UA-Compatible" content="ie=edge" />     
                 <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png"/>
                 <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png"/>
                 <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png"/>
