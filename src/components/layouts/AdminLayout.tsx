@@ -12,7 +12,7 @@ import { getCookie } from 'cookies-next'
 interface Props {
     children: React.ReactNode,
 }
-function RootLayout({ children }: Props) {
+function AdminLayout({ children }: Props) {
     const { authLogout } = useAuth()
     const metadata: Metadata = {
         title: 'TRC Admin',
@@ -25,7 +25,7 @@ function RootLayout({ children }: Props) {
                 if (res) window.location.href = '/auth'
             })
         }
-    }, [token]);
+    }, [token, authLogout]);
 
     return (
         <>
@@ -36,13 +36,6 @@ function RootLayout({ children }: Props) {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
                 <link rel="icon" type="image/png" href="assets/images/favicon.png" />
-                <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-                <link rel="stylesheet" href="/assets/css/owl.carousel.min.css" />
-                <link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
-                <link rel="stylesheet" href="/assets/css/aos.css" />
-                <link rel="stylesheet" href="/assets/css/swiper.min.css" />
-                <link rel="stylesheet" href="/assets/css/jquery.fancybox.min.css" />
-                <link rel="stylesheet" href="/style.css" />
             </Head>
             <header>
                 <div>
@@ -59,22 +52,8 @@ function RootLayout({ children }: Props) {
                 </div>
             </div>
             <AdminFooter />
-
-            <Script src="assets/js/jquery-3.4.0.min.js" strategy='beforeInteractive' />
-            <Script src="assets/js/popper.min.js" strategy='lazyOnload' />
-            <Script src="assets/js/jquery.easing.min.js" strategy='lazyOnload' />
-            <Script src="assets/js/bootstrap.min.js" strategy='lazyOnload' />
-            <Script src="assets/js/aos.js" strategy='lazyOnload' />
-            <Script src="assets/js/owl.carousel.min.js" strategy='lazyOnload' />
-            <Script src="assets/js/swiper.min.js" strategy='lazyOnload' />
-            <Script src="assets/js/jquery.fancybox.min.js" strategy='lazyOnload' />
-            <Script src="assets/js/jquery.waypoints.min.js" strategy='lazyOnload' />
-            <Script src="assets/js/jquery.counterup.min.js" strategy='lazyOnload' />
-            <Script src="assets/js/jquery.matchHeight-min.js" strategy='lazyOnload' />
-            <Script src="assets/js/bootnavbar.js" strategy='lazyOnload' />
-            <Script src="assets/js/main.js" strategy='lazyOnload' />
         </>
     )
 }
 
-export default RootLayout
+export default AdminLayout
