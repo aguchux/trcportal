@@ -24,6 +24,8 @@ const BaseFooter = () => {
                                        <li><Link href={`${siteInfo(settings, "siteTwitter")}`}><i className="fab fa-twitter" /></Link></li>
                                        <li><Link href={`${siteInfo(settings, "siteWhatsApp")}`}><i className="fab fa-whatsapp" /></Link></li>
                                        <li><Link href={`${siteInfo(settings, "siteYouTube")}`}><i className="fab fa-youtube" /></Link></li>
+                                       <li><Link href={`${siteInfo(settings, "siteEmailLink")}`}><i className="fab fa-instagram" /></Link></li>
+                                       <li><Link href={`${siteInfo(settings, "siteInstagram")}`}><i className="fa fa-envelope" /></Link></li>
                                         {loggedIn==true ?<li><Link href="/admin"><i className="fa fa-lock text-success" /></Link></li>:<li><Link href="/auth"><i className="fa fa-lock text-danger" /></Link></li> }
                                     </ul>
                                 </div>
