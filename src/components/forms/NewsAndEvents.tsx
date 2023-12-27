@@ -26,13 +26,13 @@ const NewsAndEvents = ({ news }: Props) => {
                                             <div className="single_blog mb-5">
                                                 <div className="big-blog-area border bg-white">
                                                     <div className="blog-thumb">
-                                                        <a href={`/pages/${item.slug}`}><img src="assets/images/newsimage.jpg" alt="big blog" className="img-fluid" /></a>
+                                                        <a href={`/news/${item.slug}`}><img src="assets/images/newsimage.jpg" alt="big blog" className="img-fluid" /></a>
                                                     </div>
                                                     <div className="blog-content px-4 py-1">
 
                                                         <div className="blog-text">
-                                                            <h3><a href={`/pages/${item.slug}`}>{item.title}</a></h3>
-                                                            <a href={`/pages/${item.slug}`}>Read More <i className="fas fa-long-arrow-alt-right" /></a>
+                                                            <h3><a href={`/news/${item.slug}`}>{item.title}</a></h3>
+                                                            <a href={`/news/${item.slug}`}>Read More <i className="fas fa-long-arrow-alt-right" /></a>
                                                         </div>
                                                     </div>
                                                 </div>

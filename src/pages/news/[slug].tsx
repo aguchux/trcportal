@@ -17,16 +17,16 @@ const CKEditorOutput = ({ htmlContent }: CKProps) => {
 
 type Props = {
     settings: SettingsAttrs[],
-    menus: PageAttrs[],
+    news: PageAttrs[],
 }
 
-const PageInfo = ({ settings, menus }: Props) => {
+const PageInfo = ({ settings, news }: Props) => {
     const { query } = useRouter();
     const { slug } = query;
-    const thisPageInfo = useMemo(() => getPageInfo(menus, slug as string), [menus, slug]);
+    const thisPageInfo = useMemo(() => getPageInfo(news, slug as string), [news, slug]);
     return (
         <RootLayout>
-            
+
             <Head>
                 <title>{`${thisPageInfo?.title} | ${siteInfo(settings, "siteTitle")}`}</title>
                 <meta name="description" content={siteInfo(settings, "siteDescription")}></meta>
