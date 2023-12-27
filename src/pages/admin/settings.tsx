@@ -10,6 +10,8 @@ import NewSettingsInfo from '@/components/admins/NewSettingsInfo'
 import { editableAtom } from '@/store';
 import { useAtom } from 'jotai';
 import Swal from 'sweetalert2';
+import dynamic from 'next/dynamic'
+const RichEditor = dynamic(() => import('@/components/RichEditor'), { ssr: false })
 
 export default function AdminSettings() {
 
@@ -77,6 +79,10 @@ export default function AdminSettings() {
       })
   }, [copied, deleting])
 
+  const autoResizeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    e.target.style.height = 'inherit';
+    e.target.style.height = `${e.target.scrollHeight}px`;
+  }
 
 
 
@@ -110,7 +116,7 @@ export default function AdminSettings() {
           <div className="trc-border trc-p-5 trc-bg-gray-300 trc-shadow-md trc-rounded">
             <div className="row">
               {settings.map((setting, index) => (
-                <form key={index} id={`settings_${index}`} className='col-4 col-md-4' >
+                <form key={index} id={`settings_${index}`} className='col-12 col-md-12' >
                   <input type="hidden" value={setting.keyName} />
                   <table className="trc-min-w-full my-2 trc-text-black trc-cursor-pointer trc-bg-blue-100 hover:trc-bg-blue-200 trc-rounded">
                     <thead className="trc-bg-gray-700 trc-text-white ">
@@ -134,16 +140,16 @@ export default function AdminSettings() {
                         <td className="trc-border-b trc-p-2">
                           <div className='form-group trc-my-0'>
                             {setting.keyType === 'textarea' ?
-                              <textarea onChange={
-                                (e) => {
+                              <RichEditor content={setting.keyValue} onChageFunction={
+                                (event: any, editor: any) => {
                                   setSettings((prev) => {
                                     const newSettings = [...prev];
-                                    newSettings[index].keyValue = e.target.value;
+                                    newSettings[index].keyValue = editor.getData();
                                     setCurrKey(setting._id!);
                                     return newSettings;
                                   })
                                 }
-                              } value={setting.keyValue} className='trc-border trc-border-gray-400 trc-rounded trc-p-2 trc-w-full trc-min-h-[50px] trc-h-auto' /> : <input type='text' onChange={
+                              } /> : <input type='text' onChange={
                                 (e) => {
                                   setSettings((prev) => {
                                     const newSettings = [...prev];

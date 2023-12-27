@@ -31,10 +31,13 @@ const NewSettingsInfo = (props: Props) => {
     }
 
     const textToCamelCase = (text: string) => {
-        return text.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-            return index === 0 ? word.toLowerCase() : word.toUpperCase();
-        }).replace(/\s+/g, '');
+        return text
+            .replace(/\s(.)/g, function ($1) { return $1.toUpperCase(); })
+            .replace(/\s/g, '')
+            .replace(/^(.)/, function ($1) { return $1.toLowerCase(); });
     }
+
+
 
     const createSetting = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -58,7 +61,7 @@ const NewSettingsInfo = (props: Props) => {
 
     return (
         <>
-            <form id={`settings_new`} onSubmit={createSetting} className='col-4 col-md-4' >
+            <form id={`settings_new`} onSubmit={createSetting} className='col-12 col-md-12' >
 
                 <table className="trc-min-w-full my-2 trc-text-black trc-cursor-pointer trc-bg-blue-100 hover:trc-bg-blue-200 trc-rounded">
                     <thead className="trc-bg-gray-700 trc-text-white ">
