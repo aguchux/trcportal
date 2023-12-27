@@ -13,5 +13,5 @@ export const settingsAtom = atomWithStorage<SettingsAttrs[]>("settings", [] as S
 export const testimoniesAtom = atomWithStorage<TestimoniesAttrs[]>("testimonies", [] as TestimoniesAttrs[]);
 export const loggedInAtom = atomWithStorage<boolean>('loggedIn', false);
 export const adminAtom = atomWithStorage<AdminAttrs>('admin', {} as AdminAttrs);
-
+export const editableAtom = atomWithStorage<boolean>('editable', false);
 export default jotaiStore;

@@ -5,6 +5,7 @@ export interface SettingsAttrs {
     keyTitle: string;
     keyName: string;
     keyValue: string;
+    keyType: string;
     createdAt?: string;
     updatedAt?: string;
 }
@@ -24,10 +25,14 @@ const settingsSchema = new Schema<SettingsAttrs>({
         required: true,
         trim: true,
     },
+    keyType: {
+        type: String,
+        enum: ['text', 'textarea'],
+        default: 'text',
+    },
 }, {
     timestamps: true,
 });
-
 
 const Setting = mongoose.models.Setting || mongoose.model<SettingsAttrs>("Setting", settingsSchema);
 
