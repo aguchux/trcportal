@@ -38,25 +38,25 @@ const HomePopupVideo = ({ settings }: Props) => {
                       <div className="row mt-2" data-aos="fade-up">
                           <div className="col-md-3 col-sm-6 mb-xs-2">
                               <div className="single-countdown">
-                                  <span className="counter">60</span><sup>+</sup>
+                                  <span className="counter">{siteInfo(settings, "homeStatistics1") || 60} </span><sup>+</sup>
                                   <p>Partner Universities</p>
                               </div>
                           </div>
                           <div className="col-md-3 col-sm-6 mb-xs-2">
                               <div className="single-countdown">
-                                  <span className="counter">800</span><sup>+</sup>
+                                  <span className="counter">{siteInfo(settings, "homeStatistics2") || 800} </span><sup>+</sup>
                                   <p>Happy Students</p>
                               </div>
                           </div>
                           <div className="col-md-3 col-sm-6 mb-xs-2">
                               <div className="single-countdown">
-                                  <span className="counter">37</span>
+                                  <span className="counter">{siteInfo(settings, "homeStatistics3") || 37} </span>
                                   <p>Staff & Agents</p>
                               </div>
                           </div>
                           <div className="col-md-3 col-sm-6 mb-xs-2">
                               <div className="single-countdown">
-                                  <span className="counter">4</span><sup className='trc-text-green-500'>+</sup>
+                                  <span className="counter">{siteInfo(settings, "homeStatistics4") || 4} </span><sup className='trc-text-green-500'>+</sup>
                                   <p>Academic Countries</p>
                               </div>
                           </div>
