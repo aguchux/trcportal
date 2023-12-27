@@ -1,6 +1,11 @@
+import { SettingsAttrs } from '@/models/settings.model';
+import { siteInfo } from '@/utils'
 import React from 'react'
 
-const HomePopupVideo = () => {
+type Props = {
+    settings: SettingsAttrs[];
+}
+const HomePopupVideo = ({ settings }: Props) => {
   return (
     <>
           <section className="video-section mt-0">
@@ -10,7 +15,7 @@ const HomePopupVideo = () => {
                           <div className="col-lg-6 mb-3d-5">
                               <div className="half_column_image overlay">
                                   <img src="assets/images/video_popup.jpg" alt="Video Image" className="img-fluid image-link" />
-                                  <div className="video-play-btn"><a data-fancybox href="https://www.youtube.com/watch?v=_sI_Ps7JSEk" className="video-play-link"><i className="fas fa-play-circle" /></a></div>
+                                  <div className="video-play-btn"><a data-fancybox href={siteInfo(settings, "homeServiceTitle2") || "https://www.youtube.com/watch?v=_sI_Ps7JSEk"} className="video-play-link"><i className="fas fa-play-circle" /></a></div>
                               </div>
                           </div>
                           <div className="col-lg-6" data-aos="fade-in-right">

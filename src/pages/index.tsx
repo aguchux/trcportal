@@ -1,7 +1,10 @@
 import React from 'react'
 import RootLayout from '@/components/layouts/RootLayout'
 import Slider from '@/components/Slider'
-import ThreeServices from '@/components/ThreeServices'
+import dynamic from 'next/dynamic'
+
+const ThreeServices = dynamic(() => import('@/components/ThreeServices'), { ssr: false })
+// import ThreeServices from '@/components/ThreeServices'
 import HomeWelcome from '@/components/HomeWelcome'
 import HomeLatestInformation from '@/components/HomeLatestInformation'
 import HomePopupVideo from '@/components/HomePopupVideo'
@@ -23,7 +26,7 @@ const HomePage = ({ settings }: Props) => {
             <ThreeServices settings={settings} />
             <HomeWelcome />
             <HomeLatestInformation />
-            <HomePopupVideo />
+            <HomePopupVideo settings={settings} />
             <HomeTestimonials />
         </RootLayout>
     )
