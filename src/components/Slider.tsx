@@ -1,7 +1,12 @@
+import { SettingsAttrs } from '@/models/settings.model';
+import { siteInfo } from '@/utils';
 import Link from 'next/link'
 import React from 'react'
 
-export default function Slider() {
+type Props = {
+    settings: SettingsAttrs[];
+}
+export default function Slider({ settings }: Props) {
     return (
         <>
             <section className="slider-section swiper-container">

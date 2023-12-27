@@ -19,8 +19,8 @@ const HomePage = ({ settings }: Props) => {
                 <title>{`Home | ${siteInfo(settings, "siteTitle")}`}</title>
                 <meta name="description" content={siteInfo(settings, "siteDescription")}></meta>
             </Head>
-            <Slider />
-            <ThreeServices />
+            <Slider settings={settings} />
+            <ThreeServices settings={settings} />
             <HomeWelcome />
             <HomeLatestInformation />
             <HomePopupVideo />
