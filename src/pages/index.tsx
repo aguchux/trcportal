@@ -4,12 +4,18 @@ import dynamic from 'next/dynamic'
 
 const ThreeServices = dynamic(() => import('@/components/ThreeServices'), { ssr: false });
 const Slider = dynamic(() => import('@/components/Slider'), { ssr: false });
+const HomeWelcome = dynamic(() => import('@/components/HomeWelcome'), { ssr: false });
+const HomeLatestInformation = dynamic(() => import('@/components/HomeLatestInformation'), { ssr: false });
+const HomePopupVideo = dynamic(() => import('@/components/HomePopupVideo'), { ssr: false });
+const HomeTestimonials = dynamic(() => import('@/components/HomeTestimonials'), { ssr: false });
+
 // import Slider from '@/components/Slider'
 // import ThreeServices from '@/components/ThreeServices'
-import HomeWelcome from '@/components/HomeWelcome'
-import HomeLatestInformation from '@/components/HomeLatestInformation'
-import HomePopupVideo from '@/components/HomePopupVideo'
-import HomeTestimonials from '@/components/HomeTestimonials'
+// import HomeWelcome from '@/components/HomeWelcome'
+// import HomeLatestInformation from '@/components/HomeLatestInformation'
+// import HomePopupVideo from '@/components/HomePopupVideo'
+// import HomeTestimonials from '@/components/HomeTestimonials'
+
 import Head from 'next/head'
 import { siteInfo } from '@/utils'
 
