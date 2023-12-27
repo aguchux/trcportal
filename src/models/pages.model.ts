@@ -38,7 +38,8 @@ const pageSchema = new Schema<PageAttrs>({
     },
     pageType: {
         type: String,
-        default: 'PAGE',
+        enum: ['Page', 'Post'],
+        default: 'Page',
     },
     views: {
         type: Number,
