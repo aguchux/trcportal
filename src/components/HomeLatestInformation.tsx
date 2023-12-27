@@ -28,32 +28,29 @@ const HomeLatestInformation = () => {
                                 <div className="blog-lists-wrapper">
                                     <div className="single-blog-wrapper">
                                         <div className="blog-thumb pr-4">
-                                            <a href="#"><img src="assets/images/blog_01.png" alt="blog" /></a>
+                                            <a href="#"><img src="assets/images/blog_01.png" alt="blog" className="img-fluid trc-h-[80%]" /></a>
                                         </div>
                                         <div className="blog-content-wrapper">
                                             <h4><a href="#" className='trc-text-2xl trc-line-clamp-1'>Study Recommendations.</a></h4>
                                             <p className='trc-text-lg trc-text-black'>We will help you research, and recommend available universities you can apply to. </p>
-                                            <div className="post-meta"><span>Posted on 25 March, 2019</span></div>
                                         </div>
                                     </div>
                                     <div className="single-blog-wrapper">
                                         <div className="blog-thumb pr-4">
-                                            <a href="#"><img src="assets/images/blog_02.png" alt="blog" /></a>
+                                            <a href="#"><img src="assets/images/blog_02.png" alt="blog" className="img-fluid trc-h-[80%]" /></a>
                                         </div>
                                         <div className="blog-content-wrapper">
                                             <h4><a href="#" className='trc-text-2xl trc-line-clamp-1'>Student Study Visa Services.</a></h4>
                                             <p className='trc-text-lg trc-text-black'>Our team will assist you all the way from Visa applications, Prperations, and Interviews.</p>
-                                            <div className="post-meta"><span>Posted on 25 March, 2019</span></div>
                                         </div>
                                     </div>
                                     <div className="single-blog-wrapper">
                                         <div className="blog-thumb pr-4">
-                                            <a href="#"><img src="assets/images/blog_03.png" alt="blog" /></a>
+                                            <a href="#"><img src="assets/images/blog_03.png" alt="blog" className="img-fluid trc-h-[80%]" /></a>
                                         </div>
                                         <div className="blog-content-wrapper">
                                             <h4><a href="#" className='trc-text-2xl trc-line-clamp-1'>Graduate Immigration.</a></h4>
                                             <p className='trc-text-lg trc-text-black'>Your migrations plans is important to us, we will be available to help you all the way.</p>
-                                            <div className="post-meta"><span>Posted on 25 March, 2019</span></div>
                                         </div>
                                     </div>
                                 </div>

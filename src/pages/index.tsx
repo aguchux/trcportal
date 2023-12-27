@@ -31,7 +31,7 @@ const HomePage = ({ settings }: Props) => {
             </Head>
             <Slider settings={settings} />
             <ThreeServices settings={settings} />
-            <HomeWelcome />
+            <HomeWelcome settings={settings} />
             <HomeLatestInformation />
             <HomePopupVideo settings={settings} />
             <HomeTestimonials />

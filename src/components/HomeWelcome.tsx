@@ -1,6 +1,11 @@
+import { SettingsAttrs } from '@/models/settings.model'
+import { siteInfo } from '@/utils'
 import React from 'react'
 
-const HomeWelcome = () => {
+type Props = {
+    settings: SettingsAttrs[]
+}
+const HomeWelcome = ({ settings }: Props) => {
     return (
         <>
             <section className="welcome-section section-pb">
@@ -14,8 +19,8 @@ const HomeWelcome = () => {
                             </div>
                             <div className="col-lg-6 equal-height">
                                 <div className="half_column_content">
-                                    <h2 className="sub-title">Welcome to <strong className='trc-text-gray-800'>The Recruitment Consult</strong></h2>
-                                    <p className=' trc-text-lg'>The Recruitment Consult is a student recruitment agency based in Nigeria, with a mission to help aspiring students pursue their academic dreams in some of the best schools in Europe, America, Canada and Australia.</p>
+                                    <h2 className="sub-title">{siteInfo(settings, "siteHomeWelcomeTitle") || <>Welcome to <strong className='trc-text-gray-800'>The Recruitment Consult</strong></>}</h2>
+                                    <p className=' trc-text-lg'>{siteInfo(settings, "siteHomeWelcomeText") || "The Recruitment Consult is a student recruitment agency based in Nigeria, with a mission to help aspiring students pursue their academic dreams in some of the best schools in Europe, America, Canada and Australia."}</p>
                                     <div className="theme-list trc-text-lg">
                                         <ul>
                                             <li><a href="#">Pre-Departure Services</a></li>
