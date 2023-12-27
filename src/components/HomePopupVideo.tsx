@@ -21,7 +21,8 @@ const HomePopupVideo = ({ settings }: Props) => {
                           <div className="col-lg-6" data-aos="fade-in-right">
                               <div className="video_popup_content text-white">
                                   <h2 className="sub-title text-white mb-3">Why TRC - <strong className='trc-text-green-500'>?</strong></h2>
-                                  <p>Our team comprises seasoned and qualified counselors. Dedicated to providing expert guidance throughout your academic journey. Well-versed in the intricacies of the application process. Comprehensive Support Across All Academic Levels.</p>
+                                  <p>{siteInfo(settings, "homeWhyTrc") || "Our team comprises seasoned and qualified counselors. Dedicated to providing expert guidance throughout your academic journey. Well-versed in the intricacies of the application process. Comprehensive Support Across All Academic Levels."}</p>
+                                  
                                   <ul style={{
                                         listStyle: 'none', padding: 0, margin: '0 0 1.5rem 1.5rem', lineHeight: '1.5rem'
                                     }}>
