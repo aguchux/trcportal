@@ -3170,8 +3170,8 @@ body p {
   justify-content: space-between;
   margin-bottom: 30px; }
   .blog-lists-wrapper .single-blog-wrapper .blog-thumb img {
-    width: 140px;
-    height: 140px;
+    width: 100px;
+    height: 100px;
     object-fit: cover; }
   .blog-lists-wrapper .single-blog-wrapper:last-child {
     margin-bottom: 0; }

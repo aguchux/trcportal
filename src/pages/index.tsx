@@ -32,7 +32,7 @@ const HomePage = ({ settings }: Props) => {
             <Slider settings={settings} />
             <ThreeServices settings={settings} />
             <HomeWelcome settings={settings} />
-            <HomeLatestInformation />
+            <HomeLatestInformation settings={settings} />
             <HomePopupVideo settings={settings} />
             <HomeTestimonials />
         </RootLayout>
