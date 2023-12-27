@@ -2,7 +2,7 @@ import React from "react";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import jotaiStore from "@/store";
+import jotaiStore, { newsAtom } from "@/store";
 import { Provider } from "jotai";
 import { menusAtom, settingsAtom, testimoniesAtom } from "@/store";
 import { useAtom } from "jotai";
@@ -17,6 +17,7 @@ export default function App({
 
   const { query } = useRouter();
   const [menus, setMenus] = useAtom(menusAtom);
+  const [news, setNews] = useAtom(newsAtom);
   const [settings, setSettings] = useAtom(settingsAtom);
   const [testimonies, setTestimonies] = useAtom(testimoniesAtom);
 
@@ -30,6 +31,17 @@ export default function App({
         setMenus(rawMenus)
       })
   }, [setMenus])
+
+
+  React.useEffect(() => {
+    fetch('/api/pages/news')
+      .then((res) => res.json())
+      .then((data) => {
+        const rawNews = data.data || [];
+        setNews(rawNews)
+      })
+  }, [setNews])
+
 
   React.useEffect(() => {
     fetch('/api/testimonials')
@@ -53,7 +65,7 @@ export default function App({
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={jotaiStore}>
-        <Component {...pageProps} settings={settings} menus={menus} testimonies={testimonies} />
+        <Component {...pageProps} settings={settings} menus={menus} testimonies={testimonies} news={news} />
       </Provider>
       {/* <ReactQueryDevtools initialIsOpen={true} /> */}
     </QueryClientProvider>

@@ -65,6 +65,9 @@ const Menu = () => {
                                         })}
 
                                         <li className="nav-item">
+                                            <Link href="/forms/news" className="nav-link">News</Link>
+                                        </li>
+                                        <li className="nav-item">
                                             <Link href="/forms/testimonies" className="nav-link">Testimonies</Link>
                                         </li>
                                         <li className="nav-item">

@@ -9,6 +9,7 @@ const jotaiStore = createStore();
 
 export const busyAtom = atom<boolean>(false);
 export const menusAtom = atomWithStorage<PageAttrs[]>("menus", [] as PageAttrs[]);
+export const newsAtom = atomWithStorage<PageAttrs[]>("menus", [] as PageAttrs[]);
 export const settingsAtom = atomWithStorage<SettingsAttrs[]>("settings", [] as SettingsAttrs[]);
 export const testimoniesAtom = atomWithStorage<TestimoniesAttrs[]>("testimonies", [] as TestimoniesAttrs[]);
 export const loggedInAtom = atomWithStorage<boolean>('loggedIn', false);

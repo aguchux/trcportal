@@ -8,14 +8,11 @@ import Head from 'next/head';
 import { SettingsAttrs } from '@/models/settings.model';
 import { siteInfo } from '@/utils';
 import RootLayout from '@/components/layouts/RootLayout';
-import NewsAndEvents from '@/components/forms/NewsAndEvents';
-import { PageAttrs } from '@/models/pages.model';
 
 type Props = {
     settings: SettingsAttrs[];
-    news: PageAttrs[];
 }
-const PageInfo = ({ settings, news }: Props) => {
+const NewsInfo = ({ settings }: Props) => {
     const { query } = useRouter();
     const { slug } = query;
     const thisSingleMenu = findMenu(slug as string);
@@ -32,8 +29,7 @@ const PageInfo = ({ settings, news }: Props) => {
                             {slug === 'contact-us' && <ContactUs />}
                             {slug === 'testimonies' && <Testimonies />}
                             {slug === 'application' && <Application />}
-                            {slug === 'news' && <NewsAndEvents news={news} />} 
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -41,4 +37,4 @@ const PageInfo = ({ settings, news }: Props) => {
     )
 }
 
-export default PageInfo
+export default NewsInfo

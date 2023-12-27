@@ -20,5 +20,11 @@ export const MENU_FORMS = [
         title: 'Application Form',
         menuTitle: 'Application Form',
     },
+    {
+        id: 'news',
+        slug: 'news',
+        title: 'News and Events',
+        menuTitle: 'News',
+    }
 
 ]

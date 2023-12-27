@@ -20,7 +20,12 @@ export default function RichTextEditor(props:RichTextEditorProps) {
                 config={
                     {
                         ckfinder: {
-                            uploadUrl: '/api/upload'
+                            uploadUrl: '/api/images/upload',
+                            options: {
+                                resourceType: 'Images',
+                                extension: 'jpg|jpeg|png|gif|svg',
+                                multiple: true,
+                            }
                         }
                     }
                 }

@@ -63,7 +63,7 @@ export default function AdminPages() {
 
   React.useEffect(() => {
     if (copied) return;
-    apiFetcher<ResponseData>('/pages')
+    apiFetcher<ResponseData>('/pages/all')
       .then((result) => {
         setLoading(false)
         const { data } = result

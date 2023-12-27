@@ -161,7 +161,7 @@ export default function EditPages() {
                                     </td>
 
                                     <td className="trc-border-b trc-p-2 trc-w-[200px]">
-                                        <select className="form-control">
+                                        <select className="form-control" {...register("pageType", { required: true })}>
                                             <option value="Page">Page</option>
                                             <option value="Post">Post</option>
                                         </select>

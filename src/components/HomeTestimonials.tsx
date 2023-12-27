@@ -22,7 +22,7 @@ const HomeTestimonials = () => {
                             <div className="col-md-12">
                                 <div className="testimonials-wrapper owl-carousel m-0 p-0">
                                     {testimonies.map((testimony: TestimoniesAttrs, index: number) => (
-                                        <div key={index} className="single-testimonial border-2 p-4 trc-relative">
+                                        <div key={index} className={`single-testimonial border-2 p-4 trc-relative trc-h-[300px] trc-overflow-y-auto`}>
                                             <div className='trc-grid trc-grid-cols-1 '>
                                                 <p>{testimony.testimony!}</p>
                                             </div>
