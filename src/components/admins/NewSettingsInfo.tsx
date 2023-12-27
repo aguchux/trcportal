@@ -30,6 +30,12 @@ const NewSettingsInfo = (props: Props) => {
         }
     }
 
+    const textToCamelCase = (text: string) => {
+        return text.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+            return index === 0 ? word.toLowerCase() : word.toUpperCase();
+        }).replace(/\s+/g, '');
+    }
+
     const createSetting = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setBusy(true);
@@ -77,7 +83,8 @@ const NewSettingsInfo = (props: Props) => {
                                             (e) => {
                                                 setSettings({
                                                     ...settings,
-                                                    keyTitle: e.target.value
+                                                    keyTitle: e.target.value,
+                                                    keyName: textToCamelCase(e.target.value)
                                                 })
                                             }
                                         } value={settings.keyTitle} className='trc-border trc-border-gray-400 trc-rounded trc-p-2 trc-w-full' />
@@ -87,14 +94,8 @@ const NewSettingsInfo = (props: Props) => {
                             <tr>
                                 <td className="trc-border-b trc-p-2">
                                     <div className='form-group trc-my-0'>
-                                        <input disabled={busy} type='text' placeholder='Key Name' onChange={
-                                            (e) => {
-                                                setSettings({
-                                                    ...settings,
-                                                    keyName: e.target.value
-                                                })
-                                            }
-                                        } value={settings.keyName} className='trc-border trc-border-gray-400 trc-rounded trc-p-2 trc-w-full' />
+                                        <strong>Key Name:</strong> <em className='trc-text-green-500 trc-font-bold'>{settings.keyName}</em>
+                                        <input disabled={busy} type='hidden' value={settings.keyName} className='trc-m-0 trc-p-0' />
                                     </div>
                                 </td>
                             </tr>
