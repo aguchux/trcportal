@@ -114,7 +114,7 @@ export default function AdminSettings() {
           <div className="trc-border trc-p-5 trc-bg-gray-300 trc-shadow-md trc-rounded">
             <div className="row">
               {settings.map((setting, index) => (
-                <form key={index} id={`settings_${index}`} className='col-4 col-md-4' >
+                <form key={index} id={`settings_${index}`} className='col-6 col-md-6' >
                   <input type="hidden" value={setting.keyName} />
                   <table className="trc-min-w-full my-2 trc-text-black trc-cursor-pointer trc-bg-blue-100 hover:trc-bg-blue-200 trc-rounded">
                     <thead className="trc-bg-gray-700 trc-text-white ">

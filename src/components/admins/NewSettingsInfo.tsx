@@ -61,7 +61,7 @@ const NewSettingsInfo = (props: Props) => {
 
     return (
         <>
-            <form id={`settings_new`} onSubmit={createSetting} className='col-12 col-md-12' >
+            <form id={`settings_new`} onSubmit={createSetting} className='col-6 col-md-6' >
 
                 <table className="trc-min-w-full my-2 trc-text-black trc-cursor-pointer trc-bg-blue-100 hover:trc-bg-blue-200 trc-rounded">
                     <thead className="trc-bg-gray-700 trc-text-white ">
