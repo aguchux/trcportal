@@ -1,9 +1,10 @@
 import React from 'react'
 import RootLayout from '@/components/layouts/RootLayout'
-import Slider from '@/components/Slider'
 import dynamic from 'next/dynamic'
 
-const ThreeServices = dynamic(() => import('@/components/ThreeServices'), { ssr: false })
+const ThreeServices = dynamic(() => import('@/components/ThreeServices'), { ssr: false });
+const Slider = dynamic(() => import('@/components/Slider'), { ssr: false });
+// import Slider from '@/components/Slider'
 // import ThreeServices from '@/components/ThreeServices'
 import HomeWelcome from '@/components/HomeWelcome'
 import HomeLatestInformation from '@/components/HomeLatestInformation'
